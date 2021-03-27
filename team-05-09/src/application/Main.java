@@ -17,8 +17,9 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-			// This is a change in github file
+			// This is a change in github file 
 			// ha makes change
+			// Jeffrey makes change
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
