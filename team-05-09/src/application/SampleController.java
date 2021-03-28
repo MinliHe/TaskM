@@ -17,11 +17,13 @@ public class SampleController {
 	@FXML TextField task;
 	@FXML ListView taskView;
 	
+// TESTING ADD BUTTON
 //	public void add(String message) {
 //		list.add(message);
 //		System.out.println("Task: " + message);
 //	}
 	
+//TESTING ENTER BUTTON
 //	public void enterTest(KeyEvent event) {
 //		if(event.getCode().equals(KeyCode.ENTER))
 //		{
@@ -30,13 +32,14 @@ public class SampleController {
 //		
 //	}
 	
+	//Adds task to taskView and displays it
 	public void onAdd(ActionEvent event) {
 		
-		if(task.getText() != null && task.getText().length() > 0)
+		if(task.getText() != null && task.getText().length() > 0) //check if a task has been inputted
 		{
-			list.add(task.getText());
-			taskView.getItems().add((String)task.getText());
-			task.clear();
+			list.add(task.getText()); //add task object to list for later features
+			taskView.getItems().add((String)task.getText()); // add task to task view
+			task.clear(); //clear input for new task
 		}
 	
 
@@ -44,13 +47,14 @@ public class SampleController {
 
 	}
 	
-	public void display() {
-		System.out.println("Displaying List of Tasks");
-		for(String item: list)
-		{
-			System.out.println(item);
-		}
-	}
+// TESTING DISPLAY OF TASKVIEW
+//	public void display() {
+//		System.out.println("Displaying List of Tasks");
+//		for(String item: list)
+//		{
+//			System.out.println(item);
+//		}
+//	}
 	
 	
 	
