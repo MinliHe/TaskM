@@ -3,6 +3,7 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
@@ -14,12 +15,17 @@ public class Main extends Application {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			
+			
+			Button incBtn = new Button("count");
+			root.getChildren().add(incBtn);
+			
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-			// This is a change in github file 
-			// ha makes change
-			// Jeffrey makes change
+			
+			
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
