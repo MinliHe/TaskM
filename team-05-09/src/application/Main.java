@@ -26,8 +26,8 @@ public class Main extends Application {
 			primaryStage.setTitle(title);
 			primaryStage.show();
 			
-			
-			
+			//change by Ha March29
+			//second change
 
 		} catch(Exception e) {
 			e.printStackTrace();
