@@ -14,11 +14,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("Sample.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("TaskM.fxml"));
 			
 			
-			Scene scene = new Scene(root,970,700);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Scene scene = new Scene(root,1087,750);
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			
 			
@@ -26,8 +26,8 @@ public class Main extends Application {
 			primaryStage.setTitle(title);
 			primaryStage.show();
 			
-			//change by Ha March29
-			//second change
+			
+			
 
 		} catch(Exception e) {
 			e.printStackTrace();
