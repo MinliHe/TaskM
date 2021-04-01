@@ -15,7 +15,8 @@ public class TaskMController {
     @FXML
     private TextField searchTask;
     
-
+    
+    //variables for School Section
 	@FXML Button deleteS;
 
 	@FXML Button editS;
@@ -31,6 +32,7 @@ public class TaskMController {
     private ListView<Object> dateListS = new javafx.scene.control.ListView<>();
     
 
+    //variables for Work Section
 	@FXML TextField addTaskW;
 
 	@FXML Button addW;
@@ -40,28 +42,31 @@ public class TaskMController {
 	@FXML Button deleteW;
 
 	@FXML DatePicker datePickerW;
+	@FXML
+	private ListView<String> ListViewW = new ListView<String>();
+    @FXML
+    private ListView<Object> dateListW = new javafx.scene.control.ListView<>();
 	
-	@FXML TextField addTaskP;
+    
 	
-	 @FXML
-	    private ListView<String> ListViewW = new ListView<String>();
-	    @FXML
-	    private ListView<Object> dateListW = new javafx.scene.control.ListView<>();
-	
-	
+    //variables for Personal Section
+    @FXML TextField addTaskP;
+    
 	@FXML Button addP;
+	
 	@FXML Button editP;
-
+	
 	@FXML Button deleteP;
+	
 	@FXML DatePicker datePickerP;
-
-	 @FXML
-	    private ListView<String> ListViewP = new ListView<String>();
-	    @FXML
-	    private ListView<Object> dateListP = new javafx.scene.control.ListView<>();
+	@FXML
+    private ListView<String> ListViewP = new ListView<String>();
+    @FXML
+    private ListView<Object> dateListP = new javafx.scene.control.ListView<>();
 	
 
 	
+    //methods for School section
     @FXML
     void addS(ActionEvent event) {
     	String task = addTaskS.getText();
@@ -80,10 +85,11 @@ public class TaskMController {
     }
     
 
+    //methods for Work Section
     @FXML
     void addW(ActionEvent event) {
     	String task = addTaskW.getText();
-    	if(addTaskS.getText() != null && addTaskW.getText().length() > 0) //check if a task has been inputed
+    	if(addTaskW.getText() != null && addTaskW.getText().length() > 0) //check if a task has been inputed
     		{
     			ListViewW.getItems().add(task); //add task to listView 
     			addTaskW.clear(); //clear input for new task
@@ -97,6 +103,9 @@ public class TaskMController {
 
     }
     
+    
+    
+    //Methods for Personal Section
     @FXML
     void addP(ActionEvent event) {
     	String task = addTaskP.getText();
