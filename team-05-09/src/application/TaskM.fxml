@@ -30,7 +30,7 @@
                       <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="-Infinity" prefHeight="690.0" prefWidth="60.0" style="-fx-background-color: #353562;" />
                       <AnchorPane layoutY="5.0" minHeight="0.0" minWidth="0.0" prefHeight="754.0" prefWidth="1352.0" style="-fx-background-color: #353562;">
                            <children>
-                              <Accordion layoutY="5.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                              <Accordion layoutX="14.0" layoutY="3.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1390.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="3.0">
                                 <panes>
                                   <TitledPane animated="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1364.0" text="School">
                                     <content>
@@ -194,12 +194,12 @@
                         </AnchorPane>
                     </items>
                   </SplitPane>
-                  <TextField fx:id="searchTask" alignment="CENTER" layoutX="550.0" layoutY="6.0" prefHeight="40.0" prefWidth="300.0" promptText="Search Task" style="-fx-background-color: #E8EAF6;" AnchorPane.rightAnchor="470.0" AnchorPane.topAnchor="10.0">
+                  <TextField fx:id="searchTask" alignment="CENTER" layoutX="618.0" layoutY="8.0" prefHeight="40.0" prefWidth="300.0" promptText="Search Task" style="-fx-background-color: #E8EAF6;" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="8.0">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </TextField>
-                  <Button alignment="CENTER" layoutX="965.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="60.0" style="-fx-background-color: #E8EAF6;" text="Search" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="10.0" />
+                  <Button alignment="CENTER" layoutX="965.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #E8EAF6;" text="Search" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
          </content>
