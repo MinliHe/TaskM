@@ -16,7 +16,6 @@ public class Main extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("TaskM.fxml"));
 			
-			
 			Scene scene = new Scene(root,1087,750);
 			
 			primaryStage.setScene(scene);

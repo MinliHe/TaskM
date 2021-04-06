@@ -50,13 +50,13 @@
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <ListView fx:id="ListViewS" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="550.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
+                                                            <ListView fx:id="listViewS" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="550.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
                                                             <Button fx:id="editS" layoutX="15.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Edit">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <Button fx:id="deleteS" layoutX="95.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Delete">
+                                                            <Button fx:id="deleteS" layoutX="95.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventS" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Delete">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
@@ -108,7 +108,7 @@
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <Button fx:id="deleteW" layoutX="95.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Delete">
+                                                            <Button fx:id="deleteW" layoutX="95.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventW" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Delete">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
@@ -160,7 +160,7 @@
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <Button fx:id="deleteP" layoutX="95.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Delete">
+                                                            <Button fx:id="deleteP" layoutX="95.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventP" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Delete">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
