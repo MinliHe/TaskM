@@ -82,7 +82,11 @@ public class TaskMController {
 	
 
 	
-    //methods for School section
+    /**
+     * This method implements the "Add" button under School section,
+     * User input task name in the text field, then click on "Add" button. The task is added to the list.
+     * @param event
+     */
     @FXML
     void addS(ActionEvent event) {
     	String task = addTaskS.getText();
@@ -94,6 +98,12 @@ public class TaskMController {
     		}
 
     }
+    
+    /**
+     * This method implements "Pick Date" function under School, user click on the small calendar icon on the right of the pick date text field,
+     * then select the desire date from the calendar. Due date will be added to the list.
+     * @param event
+     */
     @FXML
     void addDateS(ActionEvent event) {
     	LocalDate date = datePickerS.getValue();
@@ -101,7 +111,11 @@ public class TaskMController {
     	dateListS.setItems(dateS);
     }
     
-    // This method deletes the selected task from ListView in school section.
+    /** 
+     * 	This method implements the "delete" button under School section. 
+     * 	User first selects the task which need to be deleted, then select the corresponding due date. When both items are selected,
+     *  click the "delete" button, the selected task and due date are removed from list.
+     */
     @FXML
     public void deleteEventS()
     {
@@ -114,13 +128,18 @@ public class TaskMController {
     			if (selectedIndex != -1)
     			{
     				listViewS.getItems().remove(selectedIndex);
+    				dateListS.getItems().remove(selectedIndex);
     			}
     		} 		
     	});
     }
     
     
-    //methods for Work Section
+    /**
+     * This method implements the "Add" button under work section,
+     * User input task name in the text field, then click on "Add" button. The task is added to the list.
+     * @param event
+     */
     @FXML
     void addW(ActionEvent event) {
     	String task = addTaskW.getText();
@@ -132,6 +151,12 @@ public class TaskMController {
     		}
 
     }
+    
+    /**
+     * This method implements "Pick Date" function under Work section, user click on the small calendar icon on the right of the pick date text field,
+     * then select the desire date from the calendar. Due date will be added to the list.
+     * @param event
+     */
     @FXML
     void addDateW(ActionEvent event) {
     	LocalDate date = datePickerW.getValue();
@@ -140,7 +165,11 @@ public class TaskMController {
 
     }
     
-    // This method deletes the selected task from ListView in work section.
+    /** 
+     * 	This method implements the "delete" button under Work section. 
+     * 	User first selects the task which need to be deleted, then select the corresponding due date. When both items are selected,
+     *  click the "delete" button, the selected task and due date are removed from list.
+     */
     @FXML
     public void deleteEventW()
     {
@@ -153,13 +182,18 @@ public class TaskMController {
     			if (selectedIndex != -1)
     			{
     				ListViewW.getItems().remove(selectedIndex);
+    				dateListW.getItems().remove(selectedIndex);
     			}
     		} 		
     	});
     }
     
     
-    //Methods for Personal Section
+    /**
+     * This method implements the "Add" button under Personal section,
+     * User input task name in the text field, then click on "Add" button. The task is added to the list.
+     * @param event
+     */
     @FXML
     void addP(ActionEvent event) {
     	String task = addTaskP.getText();
@@ -171,6 +205,12 @@ public class TaskMController {
     		}
 
     }
+    
+    /**
+     * This method implements "Pick Date" function under Personal section, user click on the small calendar icon on the right of the pick date text field,
+     * then select the desire date from the calendar. Due date will be added to the list.
+     * @param event
+     */
     @FXML
     void addDateP(ActionEvent event) {
     	LocalDate date = datePickerP.getValue();
@@ -178,7 +218,11 @@ public class TaskMController {
     	dateListP.setItems(dateP);
     }
     
-    // This method deletes the selected task from ListView in personal section.
+    /** 
+     * 	This method implements the "delete" button under Personal section. 
+     * 	User first selects the task which need to be deleted, then select the corresponding due date. When both items are selected,
+     *  click the "delete" button, the selected task and due date are removed from list.
+     */
     @FXML
     public void deleteEventP()
     {
@@ -191,6 +235,7 @@ public class TaskMController {
     			if (selectedIndex != -1)
     			{
     				ListViewP.getItems().remove(selectedIndex);
+    				dateListP.getItems().remove(selectedIndex);
     			}
     		} 		
     	});
