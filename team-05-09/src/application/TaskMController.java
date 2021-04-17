@@ -1,6 +1,9 @@
 package application;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -81,6 +84,15 @@ public class TaskMController {
     private ListView<Object> dateListP = new javafx.scene.control.ListView<>();
 	
 
+    
+    
+    LocalDate getCurrentDate() {
+    	Date currentDate = new Date();
+    	Instant instant = currentDate.toInstant();
+    	LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+    	
+    	return localDate;
+    }
 	
     /**
      * This method implements the "Add" button under School section,
@@ -90,12 +102,21 @@ public class TaskMController {
     @FXML
     void addS(ActionEvent event) {
     	
+
+    	String task = addTaskS.getText();
     	LocalDate date = datePickerS.getValue();
     	
+
     	
-    	String task = addTaskS.getText();
+    	if(date != null) {
+    		task = task + ": due "+ (date.toString());
+        	if(date.equals(getCurrentDate())) {
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " IMPORTANT DUE TODAY";
+        	}
+        	
+    	}
     	
-    	task = task + ": due "+ (date.toString());
+    	
     	if(addTaskS.getText() != null && addTaskS.getText().length() > 0) //check if a task has been inputed
     		{
     			schoolTask.add(task);
@@ -153,7 +174,15 @@ public class TaskMController {
     	
     	String task = addTaskW.getText();
     	
-    	task = task + ": due "+ (date.toString());
+    	
+    	if(date != null) {
+    		task = task + ": due "+ (date.toString());
+        	if(date.equals(getCurrentDate())) {
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " IMPORTANT DUE TODAY";
+        	}
+        	
+    	}
+    	
     	if(addTaskW.getText() != null && addTaskW.getText().length() > 0) //check if a task has been inputed
     		{	
     			workTask.add(task);
@@ -212,7 +241,16 @@ public class TaskMController {
     	
     	String task = addTaskP.getText();
     	
-    	task = task + ": due "+ (date.toString());
+    	
+    	if(date != null) {
+    		task = task + ": due "+ (date.toString());
+        	if(date.equals(getCurrentDate())) {
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " IMPORTANT DUE TODAY";
+        	}
+        	
+    	}
+    	
+
     	if(addTaskP.getText() != null && addTaskP.getText().length() > 0) //check if a task has been inputed
     		{
     			personalTask.add(task);
