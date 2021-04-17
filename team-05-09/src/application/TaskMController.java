@@ -89,7 +89,13 @@ public class TaskMController {
      */
     @FXML
     void addS(ActionEvent event) {
+    	
+    	LocalDate date = datePickerS.getValue();
+    	
+    	
     	String task = addTaskS.getText();
+    	
+    	task = task + ": due "+ (date.toString());
     	if(addTaskS.getText() != null && addTaskS.getText().length() > 0) //check if a task has been inputed
     		{
     			schoolTask.add(task);
@@ -142,7 +148,12 @@ public class TaskMController {
      */
     @FXML
     void addW(ActionEvent event) {
+    	LocalDate date = datePickerW.getValue();
+    	
+    	
     	String task = addTaskW.getText();
+    	
+    	task = task + ": due "+ (date.toString());
     	if(addTaskW.getText() != null && addTaskW.getText().length() > 0) //check if a task has been inputed
     		{	
     			workTask.add(task);
@@ -196,7 +207,12 @@ public class TaskMController {
      */
     @FXML
     void addP(ActionEvent event) {
+    	LocalDate date = datePickerP.getValue();
+    	
+    	
     	String task = addTaskP.getText();
+    	
+    	task = task + ": due "+ (date.toString());
     	if(addTaskP.getText() != null && addTaskP.getText().length() > 0) //check if a task has been inputed
     		{
     			personalTask.add(task);
