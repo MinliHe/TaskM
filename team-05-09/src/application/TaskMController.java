@@ -101,8 +101,6 @@ public class TaskMController {
      */
     @FXML
     void addS(ActionEvent event) {
-    	
-
     	String task = addTaskS.getText();
     	LocalDate date = datePickerS.getValue();
     	
@@ -123,7 +121,6 @@ public class TaskMController {
     			listViewS.setItems(schoolTask);//add task to listView
     			addTaskS.clear(); //clear input for new task
     		}
-
     }
     
     /**
@@ -155,7 +152,6 @@ public class TaskMController {
     			if (selectedIndex != -1)
     			{
     				listViewS.getItems().remove(selectedIndex);
-    				dateListS.getItems().remove(selectedIndex);
     			}
     		} 		
     	});
@@ -222,7 +218,6 @@ public class TaskMController {
     			if (selectedIndex != -1)
     			{
     				ListViewW.getItems().remove(selectedIndex);
-    				dateListW.getItems().remove(selectedIndex);
     			}
     		} 		
     	});
@@ -289,7 +284,6 @@ public class TaskMController {
     			if (selectedIndex != -1)
     			{
     				ListViewP.getItems().remove(selectedIndex);
-    				dateListP.getItems().remove(selectedIndex);
     			}
     		} 		
     	});
