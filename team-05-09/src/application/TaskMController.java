@@ -18,6 +18,8 @@ import javafx.scene.control.cell.TextFieldListCell;
 import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
 
+import java.sql.SQLException;
+
 public class TaskMController {
 	
 	//variables for School Section
@@ -104,8 +106,7 @@ public class TaskMController {
      * @param event
      */
     @FXML
-    void addS(ActionEvent event) 
-    {
+    void addS(ActionEvent event) throws SQLException {
     	String task = addTaskS.getText();
     	LocalDate date = datePickerS.getValue();
     		
@@ -124,12 +125,14 @@ public class TaskMController {
     			listViewS.setCellFactory(TextFieldListCell.forListView());
     			addTaskS.clear(); //clear input for new task
     		}   	
+
+    	// insert the record into the database
+    	dbConnect connect = new dbConnect();
+    	connect.insertRecord(task,date);
     }  
     
     @FXML
-    void addDateS(ActionEvent event) 
-    {
-    	
+    void addDateS(ActionEvent event) throws SQLException {
     	LocalDate date = datePickerS.getValue();
     	dateS.add(date);
         dateListS.setItems(dateS);  	
@@ -151,8 +154,8 @@ public class TaskMController {
     			if (selectedIndex != -1)
     			{
     				listViewS.getItems().remove(selectedIndex);
-    			}
-    		} 		
+    			}	
+    		}
     	});
     }
     
@@ -183,12 +186,11 @@ public class TaskMController {
      * User input task name in the text field, then pick a due day.
      * Then click on "Add" button. The task and due date are shown to the list.
      * @param event
+     * @throws SQLException 
      */
     @FXML
-    void addW(ActionEvent event) {
+    void addW(ActionEvent event) throws SQLException {
     	LocalDate date = datePickerW.getValue();
-    	
-    	
     	String task = addTaskW.getText();
     	
     	
@@ -207,7 +209,12 @@ public class TaskMController {
     			ListViewW.setCellFactory(TextFieldListCell.forListView());
     			addTaskW.clear(); //clear input for new task
     		}
-    }   
+    	
+    	// insert the record into the database
+    	dbConnect connect = new dbConnect();
+    	connect.insertRecord(task,date);
+    }
+    
     @FXML
     void addDateW(ActionEvent event) {
     	LocalDate date = datePickerW.getValue();
@@ -241,9 +248,10 @@ public class TaskMController {
     /** 
      * 	This method implements the "delete" button under work section. 
      * 	User select the task and click delete button. Task name and date will be removed from list.
+     * @throws SQLException 
      */
     @FXML
-    public void deleteEventW()
+    public void deleteEventW() throws SQLException
     {
     	deleteW.setOnAction(new EventHandler<ActionEvent>()
     	{
@@ -257,6 +265,7 @@ public class TaskMController {
     			}
     		} 		
     	});
+    	
     }
     
     
@@ -265,11 +274,12 @@ public class TaskMController {
      * User input task name in the text field, then pick a due day.
      * Then click on "Add" button. The task and due date are shown to the list.
      * @param event
+     * @throws SQLException 
      */
     @FXML
-    void addP(ActionEvent event) {
-    	LocalDate date = datePickerP.getValue();    	
-    	String task = addTaskP.getText();   	
+    void addP(ActionEvent event) throws SQLException {
+    	LocalDate date = datePickerP.getValue();
+    	String task = addTaskP.getText();
     	
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
@@ -287,6 +297,10 @@ public class TaskMController {
     			ListViewP.setCellFactory(TextFieldListCell.forListView());
     			addTaskP.clear(); //clear input for new task
     		}
+    	
+    	// insert the record into the database
+    	dbConnect connect = new dbConnect();
+    	connect.insertRecord(task,date);
     }
     
     @FXML
