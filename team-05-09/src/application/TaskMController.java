@@ -207,10 +207,7 @@ public class TaskMController {
     			ListViewW.setCellFactory(TextFieldListCell.forListView());
     			addTaskW.clear(); //clear input for new task
     		}
-
-    }
-    
-    
+    }   
     @FXML
     void addDateW(ActionEvent event) {
     	LocalDate date = datePickerW.getValue();
