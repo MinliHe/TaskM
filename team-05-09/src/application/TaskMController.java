@@ -14,18 +14,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldListCell;
+import javafx.util.StringConverter;
+import javafx.util.converter.DefaultStringConverter;
 
 public class TaskMController {
 	
-
+	//variables for School Section
     @FXML
     private TextField searchTask;
     
-    
-    //variables for School Section
 	@FXML Button deleteS;
-
-	@FXML Button editS;
 
 	@FXML TextField addTaskS;
 
@@ -35,11 +34,13 @@ public class TaskMController {
 	@FXML
     private ObservableList<String> schoolTask = FXCollections.observableArrayList();
     @FXML
-    private ListView<String> listViewS = new ListView<String>();
+    private ListView<String> listViewS = new ListView<String>(schoolTask);
     @FXML
     private ObservableList<Object> dateS = FXCollections.observableArrayList();
     @FXML
     private ListView<Object> dateListS = new javafx.scene.control.ListView<>();
+    @FXML
+    private StringConverter<String> converter = new DefaultStringConverter();
     
     
 
@@ -47,8 +48,6 @@ public class TaskMController {
 	@FXML TextField addTaskW;
 
 	@FXML Button addW;
-
-	@FXML Button editW;
 
 	@FXML Button deleteW;
 
@@ -69,8 +68,6 @@ public class TaskMController {
     
 	@FXML Button addP;
 	
-	@FXML Button editP;
-	
 	@FXML Button deleteP;
 	
 	@FXML DatePicker datePickerP;
@@ -82,9 +79,15 @@ public class TaskMController {
 	private ObservableList<Object> dateP = FXCollections.observableArrayList();
     @FXML
     private ListView<Object> dateListP = new javafx.scene.control.ListView<>();
-	
+    @FXML
+	private int selctedIndex;
+    @FXML
+	private String oldValue;
+    @FXML
+    private String newTask;
 
-    
+	
+	
     
     LocalDate getCurrentDate() {
     	Date currentDate = new Date();
@@ -101,7 +104,8 @@ public class TaskMController {
      * @param event
      */
     @FXML
-    void addS(ActionEvent event) {
+    void addS(ActionEvent event) 
+    {
     	String task = addTaskS.getText();
     	LocalDate date = datePickerS.getValue();
     		
@@ -117,15 +121,18 @@ public class TaskMController {
     		{
     			schoolTask.add(task);
     			listViewS.setItems(schoolTask);//add task to listView
+    			listViewS.setCellFactory(TextFieldListCell.forListView());
     			addTaskS.clear(); //clear input for new task
-    		}
+    		}   	
     }  
     
     @FXML
-    void addDateS(ActionEvent event) {
+    void addDateS(ActionEvent event) 
+    {
+    	
     	LocalDate date = datePickerS.getValue();
     	dateS.add(date);
-    	dateListS.setItems(dateS);
+        dateListS.setItems(dateS);  	
     }
     
     /** 
@@ -149,6 +156,27 @@ public class TaskMController {
     	});
     }
     
+    /**
+     * THis method allow in-line update of task name and date.
+     * User double click on item, and use keyboard to make a change. 
+     * When done, press return button.
+     */
+    @FXML
+    public void editEventS()
+    {	
+    	listViewS.setOnEditStart(start -> {
+    		System.out.println("Edit Start");
+    	});
+    	listViewS.setOnEditCommit(commit -> {
+    		listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
+    	});
+    	listViewS.setOnEditCancel(new EventHandler<ListView.EditEvent<String>>() {
+			@Override
+			public void handle(ListView.EditEvent<String> event) {
+				// TODO Auto-generated method stub				
+			} 		
+    	});   	
+    }
     
     /**
      * This method implements the "Add" button under work section.
@@ -175,7 +203,8 @@ public class TaskMController {
     	if(addTaskW.getText() != null && addTaskW.getText().length() > 0) //check if a task has been inputed
     		{	
     			workTask.add(task);
-    			ListViewW.setItems(workTask); //add task to listView 
+    			ListViewW.setItems(workTask); //add task to listView
+    			ListViewW.setCellFactory(TextFieldListCell.forListView());
     			addTaskW.clear(); //clear input for new task
     		}
 
@@ -188,6 +217,28 @@ public class TaskMController {
     	dateW.add(date);
     	dateListW.setItems(dateW);
 
+    }
+    
+    /**
+     * THis method allow in-line update of task name and date.
+     * User double click on item, and use keyboard to make a change. When done, press
+     * return button.
+     */
+    @FXML
+    public void editEventW()
+    {	
+    	ListViewW.setOnEditStart(start -> {
+    		System.out.println("Edit Start");
+    	});
+    	ListViewW.setOnEditCommit(commit -> {
+    		listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
+    	});
+    	ListViewW.setOnEditCancel(new EventHandler<ListView.EditEvent<String>>() {
+			@Override
+			public void handle(ListView.EditEvent<String> event) {
+				// TODO Auto-generated method stub				
+			} 		
+    	});   	
     }
     
     /** 
@@ -220,11 +271,8 @@ public class TaskMController {
      */
     @FXML
     void addP(ActionEvent event) {
-    	LocalDate date = datePickerP.getValue();
-    	
-    	
-    	String task = addTaskP.getText();
-    	
+    	LocalDate date = datePickerP.getValue();    	
+    	String task = addTaskP.getText();   	
     	
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
@@ -239,9 +287,9 @@ public class TaskMController {
     		{
     			personalTask.add(task);
     			ListViewP.setItems(personalTask); //add task to listView 
+    			ListViewP.setCellFactory(TextFieldListCell.forListView());
     			addTaskP.clear(); //clear input for new task
     		}
-
     }
     
     @FXML
@@ -249,6 +297,28 @@ public class TaskMController {
     	LocalDate date = datePickerP.getValue();
     	dateP.add(date);
     	dateListP.setItems(dateP);
+    }
+    
+    /**
+     * THis method allow in-line update of task name and date.
+     * User double click on item, and use keyboard to make a change. When done, press
+     * return button.
+     */
+    @FXML
+    public void editEventP()
+    {	
+    	ListViewP.setOnEditStart(start -> {
+    		System.out.println("Edit Start");
+    	});
+    	ListViewP.setOnEditCommit(commit -> {
+    		ListViewP.getItems().set(commit.getIndex(), commit.getNewValue());
+    	});
+    	ListViewP.setOnEditCancel(new EventHandler<ListView.EditEvent<String>>() {
+			@Override
+			public void handle(ListView.EditEvent<String> event) {
+				// TODO Auto-generated method stub				
+			} 		
+    	});   	
     }
     
     /** 
