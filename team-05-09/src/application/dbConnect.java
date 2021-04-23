@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class dbConnect {
 	private static final String url = "jdbc:sqlite:src/application/task.db";
     private static final String INSERT_QUERY = "INSERT INTO taskM(name, date) VALUES (?, ?)";
-
+  //private static final String DELETE_QUERY = "DELETE FROM taskM(name, date) VALUES (?, ?)";
     
     public void insertRecord(String name, LocalDate date) throws SQLException {
 
@@ -31,7 +31,7 @@ public class dbConnect {
         }
     }
     
-
+    
 
     public static void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
