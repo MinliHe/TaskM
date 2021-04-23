@@ -32,8 +32,6 @@
                            <children>
                               <Accordion layoutX="14.0" layoutY="3.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1390.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="3.0">
                                 <panes>
-<<<<<<< HEAD
-=======
                                   <TitledPane animated="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1364.0" text="School">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -86,7 +84,6 @@
                                           <Font size="24.0" />
                                        </font>
                                   </TitledPane>
->>>>>>> refs/remotes/origin/main
                                     <TitledPane animated="false" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1364.0" text="Work">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
