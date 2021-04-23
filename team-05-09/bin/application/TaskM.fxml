@@ -14,18 +14,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="862.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TaskMController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="862.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TaskMController">
    <children>
       <ScrollPane hbarPolicy="NEVER" layoutX="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="862.0" prefWidth="1087.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
             <AnchorPane layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="862.0" prefWidth="1087.0">
                <children>
-                  <Label alignment="TOP_LEFT" layoutX="1.0" layoutY="-21.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="1438.0" style="-fx-background-color: #4A148C;" text="  TaskM" textFill="#fefeff" AnchorPane.bottomAnchor="785.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label alignment="TOP_LEFT" layoutX="1.0" layoutY="-21.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="1438.0" style="-fx-background-color: #4A148C;" text="  TaskM" textFill="#fefeff" AnchorPane.bottomAnchor="785.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="48.0" />
                      </font>
                   </Label>
-                  <SplitPane dividerPositions="0.07448979591836735" layoutX="-4.0" layoutY="64.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="65.0">
+                  <SplitPane dividerPositions="0.052" layoutX="-4.0" layoutY="64.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
                     <items>
                       <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="-Infinity" prefHeight="690.0" prefWidth="60.0" style="-fx-background-color: #353562;" />
                       <AnchorPane layoutY="5.0" minHeight="0.0" minWidth="0.0" prefHeight="754.0" prefWidth="1352.0" style="-fx-background-color: #353562;">
@@ -33,98 +33,37 @@
                               <Accordion layoutX="14.0" layoutY="3.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1390.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="3.0">
                                 <panes>
 
-<<<<<<< Upstream, based on branch 'main' of https://github.com/MinliHe/TaskM.git
-
-
-=======
->>>>>>> f6d793b APR22
-                                  <TitledPane animated="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1364.0" text="School">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <HBox layoutX="65.2" layoutY="38.2" minHeight="-Infinity" minWidth="-Infinity" prefWidth="700.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="19.0">
-                                                   <children>
-                                                      <Pane layoutX="60.0" onDragDetected="#deleteEventS" prefWidth="582.0" style="-fx-background-color: #353562;">
-                                                         <children>
-                                                            <TextField fx:id="addTaskS" alignment="CENTER" layoutX="15.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="470.0" promptText="Add Task">
-                                                               <font>
-                                                                  <Font size="24.0" />
-                                                               </font>
-                                                            </TextField>
-                                                            <Button fx:id="addS" layoutX="490.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addS" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Add">
-                                                               <font>
-                                                                  <Font size="18.0" />
-                                                               </font>
-                                                            </Button>
-                                                            <ListView fx:id="listViewS" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="550.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
-                                                           
-                                                            <Button fx:id="deleteS" layoutX="95.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventS" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #E1BEE7;" text="Delete">
-                                                               <font>
-                                                                  <Font size="18.0" />
-                                                               </font>
-                                                            </Button>
-                                                            <DatePicker fx:id="datePickerS" layoutX="355.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="210.0" style="-fx-font-size: 24;" />
-                                                            <Label alignment="CENTER" layoutX="260.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="90.0" style="-fx-background-color: #E8EAF6;" text="Pick Date">
-                                                               <font>
-                                                                  <Font size="18.0" />
-                                                               </font>
-                                                            </Label>
-                                                         </children>
-                                                      </Pane>
-                                                      <Pane minHeight="0.0" minWidth="0.0" prefWidth="0.0" style="-fx-background-color: #353562;" />
-                                                      <Pane layoutX="566.0" layoutY="10.0" prefWidth="329.0" style="-fx-background-color: #353562;">
-                                                         <children>
-                                                            <ListView fx:id="dateListS" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" prefWidth="305.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
-                                                         </children>
-                                                      </Pane>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </AnchorPane>
-                                    </content>
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                  </TitledPane>
-
                                     <TitledPane animated="false" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1364.0" text="Work">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
                                                 <HBox layoutX="65.2" layoutY="38.2" minHeight="-Infinity" minWidth="-Infinity" prefWidth="700.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="19.0">
                                                    <children>
-                                                      <Pane layoutX="60.0" prefHeight="574.0" prefWidth="630.0" style="-fx-background-color: #353562;">
+                                                      <Pane layoutX="60.0" prefHeight="578.0" prefWidth="824.0" style="-fx-background-color: #353562;">
                                                          <children>
-                                                            <TextField fx:id="addTaskW" alignment="CENTER" layoutX="15.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="470.0" promptText="Add Task">
+                                                            <TextField fx:id="addTaskW" alignment="CENTER" layoutX="15.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="340.0" promptText="Add Task">
                                                                <font>
                                                                   <Font size="24.0" />
                                                                </font>
                                                             </TextField>
-                                                            <Button fx:id="addW" layoutX="490.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addW" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Add">
+                                                            <Button fx:id="addW" layoutX="680.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addW" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Add">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <ListView fx:id="ListViewW" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="550.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
-                                                            <Button fx:id="deleteW" layoutX="46.0" layoutY="67.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventW" prefHeight="30.0" prefWidth="169.0" style="-fx-background-color: #E1BEE7;" text="Delete">
+                                                            <ListView fx:id="ListViewW" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="740.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
+                                                            <Button fx:id="deleteW" layoutX="15.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventW" prefHeight="45.0" prefWidth="77.0" style="-fx-background-color: #E1BEE7;" text="Delete">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <DatePicker fx:id="datePickerW" layoutX="355.0" layoutY="67.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="210.0" style="-fx-font-size: 24;" />
-                                                            <Label alignment="CENTER" layoutX="260.0" layoutY="67.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="90.0" style="-fx-background-color: #E8EAF6;" text="Pick Date">
+                                                            <DatePicker fx:id="datePickerW" layoutX="455.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="220.0" style="-fx-font-size: 24;" />
+                                                            <Label alignment="CENTER" layoutX="360.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="90.0" style="-fx-background-color: #E8EAF6;" text="Pick Date">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label layoutX="88.0" layoutY="104.0" text="Label" />
-                                                            <Label layoutX="51.0" layoutY="104.0" text="Double Click To Update Task" textFill="#cf9dd0" />
-                                                         </children>
-                                                      </Pane>
-                                                      <Pane minHeight="0.0" minWidth="0.0" prefWidth="0.0" style="-fx-background-color: #353562;" />
-                                                      <Pane layoutX="566.0" layoutY="10.0" prefWidth="329.0" style="-fx-background-color: #353562;">
-                                                         <children>
-                                                            <ListView fx:id="dateListW" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" prefWidth="305.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
+                                                            <Label layoutX="298.0" layoutY="84.0" text="Double Click To Update Task" textFill="#cf9dd0" />
                                                          </children>
                                                       </Pane>
                                                    </children>
@@ -144,32 +83,31 @@
                                                    <children>
                                                       <Pane layoutX="60.0" prefHeight="578.0" prefWidth="824.0" style="-fx-background-color: #353562;">
                                                          <children>
-                                                            <TextField fx:id="addTaskP" alignment="CENTER" layoutX="15.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="359.0" promptText="Add Task">
+                                                            <TextField fx:id="addTaskP" alignment="CENTER" layoutX="15.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="340.0" promptText="Add Task">
                                                                <font>
                                                                   <Font size="24.0" />
                                                                </font>
                                                             </TextField>
-                                                            <Button fx:id="addP" layoutX="719.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addP" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Add">
+                                                            <Button fx:id="addP" layoutX="680.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addP" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Add">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <ListView fx:id="ListViewP" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="788.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
-                                                            <Button fx:id="deleteP" layoutX="15.0" layoutY="77.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventP" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #E1BEE7;" text="Delete">
+                                                            <ListView fx:id="ListViewP" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="740.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
+                                                            <Button fx:id="deleteP" layoutX="15.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventP" prefHeight="45.0" prefWidth="77.0" style="-fx-background-color: #E1BEE7;" text="Delete">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <DatePicker fx:id="datePickerP" layoutX="471.0" layoutY="11.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="220.0" style="-fx-font-size: 24;" />
-                                                            <Label alignment="CENTER" layoutX="377.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E8EAF6;" text="Pick Date">
+                                                            <DatePicker fx:id="datePickerP" layoutX="455.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="220.0" style="-fx-font-size: 24;" />
+                                                            <Label alignment="CENTER" layoutX="360.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="90.0" style="-fx-background-color: #E8EAF6;" text="Pick Date">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label layoutX="298.0" layoutY="84.0" text="Double Click To Update Task" textFill="#cf9dd0" />
+                                                            <Label layoutX="298.0" layoutY="84.0" text="Double Click To Edit Task" textFill="#cf9dd0" />
                                                          </children>
                                                       </Pane>
-                                                      <Pane minHeight="0.0" minWidth="0.0" prefWidth="0.0" style="-fx-background-color: #353562;" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -181,41 +119,35 @@
                                     </TitledPane>
                                   <TitledPane animated="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1364.0" text="School">
                                     <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="529.0" prefWidth="1350.0">
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
                                                 <HBox layoutX="65.2" layoutY="38.2" minHeight="-Infinity" minWidth="-Infinity" prefWidth="700.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="19.0">
                                                    <children>
-                                                      <Pane layoutX="60.0" prefWidth="582.0" style="-fx-background-color: #353562;">
+                                                      <Pane layoutX="60.0" prefHeight="875.0" prefWidth="824.0" style="-fx-background-color: #353562;">
                                                          <children>
-                                                            <TextField fx:id="addTaskS" alignment="CENTER" layoutX="15.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="470.0" promptText="Add Task">
+                                                            <TextField fx:id="addTaskS" alignment="CENTER" layoutX="15.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="340.0" promptText="Add Task">
                                                                <font>
                                                                   <Font size="24.0" />
                                                                </font>
                                                             </TextField>
-                                                            <Button fx:id="addS" layoutX="490.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addS" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Add">
+                                                            <Button fx:id="addS" layoutX="680.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addS" prefHeight="45.0" prefWidth="73.0" style="-fx-background-color: #E1BEE7;" text="Add">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <ListView fx:id="listViewS" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="550.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
-                                                            <Button fx:id="deleteS" layoutX="41.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventS" prefHeight="32.0" prefWidth="192.0" style="-fx-background-color: #E1BEE7;" text="Delete">
+                                                            <ListView fx:id="listViewS" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="740.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
+                                                            <Button fx:id="deleteS" layoutX="15.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEventS" prefHeight="45.0" prefWidth="77.0" style="-fx-background-color: #E1BEE7;" text="Delete">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Button>
-                                                            <DatePicker fx:id="datePickerS" layoutX="355.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="210.0" style="-fx-font-size: 24;" />
-                                                            <Label alignment="CENTER" layoutX="260.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="90.0" style="-fx-background-color: #E8EAF6;" text="Pick Date">
+                                                            <DatePicker fx:id="datePickerS" layoutX="455.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="220.0" style="-fx-font-size: 24;" />
+                                                            <Label alignment="CENTER" layoutX="360.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="90.0" style="-fx-background-color: #E8EAF6;" text="Pick Date">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label layoutX="48.0" layoutY="97.0" text="Double Click Item To Update Task" textFill="#cf9dd0" />
-                                                         </children>
-                                                      </Pane>
-                                                      <Pane minHeight="0.0" minWidth="0.0" prefWidth="0.0" style="-fx-background-color: #353562;" />
-                                                      <Pane layoutX="566.0" layoutY="10.0" prefWidth="329.0" style="-fx-background-color: #353562;">
-                                                         <children>
-                                                            <ListView fx:id="dateListS" editable="true" fixedCellSize="-20.0" layoutX="15.0" layoutY="120.0" prefWidth="305.0" style="-fx-fixed-cell-size: 45; -fx-font-size: 24.0;" />
+                                                            <Label layoutX="298.0" layoutY="84.0" text="Double Click Item To Update Task" textFill="#cf9dd0" />
                                                          </children>
                                                       </Pane>
                                                    </children>
@@ -233,12 +165,12 @@
                         </AnchorPane>
                     </items>
                   </SplitPane>
-                  <TextField fx:id="searchTask" alignment="CENTER" layoutX="618.0" layoutY="8.0" prefHeight="40.0" prefWidth="300.0" promptText="Search Task" style="-fx-background-color: #E8EAF6;" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="8.0">
+                  <TextField fx:id="searchTask" alignment="CENTER" layoutX="271.0" layoutY="10.0" prefHeight="40.0" prefWidth="300.0" promptText="Search Task" style="-fx-background-color: #E8EAF6;" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="8.0">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </TextField>
-                  <Button alignment="CENTER" layoutX="965.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #E8EAF6;" text="Search" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="10.0" />
+                  <Button alignment="CENTER" layoutX="578.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #E8EAF6;" text="Search" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
          </content>

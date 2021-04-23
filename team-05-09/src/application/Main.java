@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-//Ha Test Appr23
+
 public class Main extends Application {
 	
 	private final static String title = "TaskM";
