@@ -18,6 +18,9 @@ import javafx.scene.control.cell.TextFieldListCell;
 import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class TaskMController {
@@ -156,10 +159,21 @@ public class TaskMController {
     		public void handle(ActionEvent event)
     		{
     			int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
+    			String selected = "";
     			if (selectedIndex != -1)
     			{
-    				listViewS.getItems().remove(selectedIndex);
+    				selected = listViewS.getSelectionModel().getSelectedItem();
+    				listViewS.getItems().remove(selected);
     			}	
+    			
+    			// delete the record from  the database
+    	    	dbConnect connect = new dbConnect();
+    	    	try {
+					connect.deleteRecord(selected);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
     		}
     	});
     }
@@ -264,11 +278,22 @@ public class TaskMController {
     		public void handle(ActionEvent event)
     		{
     			int selectedIndex = ListViewW.getSelectionModel().getSelectedIndex();
+    			String selected = "";
     			if (selectedIndex != -1)
     			{
-    				ListViewW.getItems().remove(selectedIndex);
+    				selected = ListViewW.getSelectionModel().getSelectedItem();
+    				ListViewW.getItems().remove(selected);
     			}
-    		} 		
+    			
+        		// delete the record from  the database
+    	    	dbConnect connect = new dbConnect();
+    	    	try {
+    				connect.deleteRecord(selected);
+    			} catch (SQLException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		} 	
     	});
     	
     }
@@ -351,12 +376,111 @@ public class TaskMController {
     		public void handle(ActionEvent event)
     		{
     			int selectedIndex = ListViewP.getSelectionModel().getSelectedIndex();
+    			String selected = "";
     			if (selectedIndex != -1)
     			{
-    				ListViewP.getItems().remove(selectedIndex);
+    				selected = ListViewP.getSelectionModel().getSelectedItem();
+    				ListViewP.getItems().remove(selected);
     			}
+    			
+    			// delete the record from  the database
+    	    	dbConnect connect = new dbConnect();
+    	    	try {
+					connect.deleteRecord(selected);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
     		} 		
     	});
+    }
+    
+    private class dbConnect {
+    	
+    	private static final String url = "jdbc:sqlite:src/application/task.db";
+        private static final String INSERT_QUERY = "INSERT INTO taskM(name, date) VALUES (?, ?)";
+        //private static final String UPDATE_QUERY = "UPDATE taskM SET name=? WHERE newName=?";
+        private static final String DELETE_QUERY = "DELETE FROM taskM WHERE name=?";
+        
+        public void insertRecord(String name, LocalDate date) throws SQLException {
+
+            // Step 1: Establishing a Connection and 
+            // try-with-resource statement will auto close the connection.
+            try (Connection connection = DriverManager
+                .getConnection(url, name, date.toString());
+
+                // Step 2:Create a statement using connection object
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, date.toString());
+
+                System.out.println(preparedStatement);
+                // Step 3: Execute the query or update query
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                // print SQL exception information
+                printSQLException(e);
+            }
+        }
+        
+//        public void editRecord(String name) throws SQLException {
+//    
+//            // Step 1: Establishing a Connection and 
+//            // try-with-resource statement will auto close the connection.
+//            try (Connection connection = DriverManager
+//                .getConnection(url);
+//    
+//                // Step 2:Create a statement using connection object
+//                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
+//                preparedStatement.setString(1, name);
+//    
+//                System.out.println(preparedStatement);
+//                // Step 3: Execute the query or update query
+//                preparedStatement.executeUpdate();
+//            } catch (SQLException e) {
+//                // print SQL exception information
+//                printSQLException(e);
+//            }
+//        }
+        
+      public void deleteRecord(String name) throws SQLException {
+
+          // Step 1: Establishing a Connection and 
+          // try-with-resource statement will auto close the connection.
+          try (Connection connection = DriverManager
+              .getConnection(url);
+
+              // Step 2:Create a statement using connection object
+              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_QUERY)) {
+              preparedStatement.setString(1, name);
+              //preparedStatement.setString(2, date.toString());
+
+              System.out.println(preparedStatement);
+              // Step 3: Execute the query or update query
+              preparedStatement.executeUpdate();
+          } catch (SQLException e) {
+              // print SQL exception information
+              printSQLException(e);
+          }
+      }
+        
+        
+
+        public void printSQLException(SQLException ex) {
+            for (Throwable e: ex) {
+                if (e instanceof SQLException) {
+                    e.printStackTrace(System.err);
+                    System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                    System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                    System.err.println("Message: " + e.getMessage());
+                    Throwable t = ex.getCause();
+                    while (t != null) {
+                        System.out.println("Cause: " + t);
+                        t = t.getCause();
+                    }
+                }
+            }
+        }
     }
 
 }
