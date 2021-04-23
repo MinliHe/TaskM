@@ -31,6 +31,7 @@ public class TaskMController {
 	@FXML TextField addTaskS;
 
 	@FXML Button addS;
+	
 
 	@FXML DatePicker datePickerS;
 	@FXML
@@ -87,6 +88,10 @@ public class TaskMController {
 	private String oldValue;
     @FXML
     private String newTask;
+
+	@FXML Button editS;
+
+	
 
 	
 	
@@ -308,6 +313,7 @@ public class TaskMController {
     	LocalDate date = datePickerP.getValue();
     	dateP.add(date);
     	dateListP.setItems(dateP);
+    	dateP.clear();
     }
     
     /**
