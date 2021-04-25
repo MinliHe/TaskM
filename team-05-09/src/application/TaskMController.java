@@ -4,12 +4,14 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -18,12 +20,14 @@ import javafx.scene.control.cell.TextFieldListCell;
 import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class TaskMController {
+public class TaskMController implements Initializable{
 	
 	//variables for School Section
     @FXML
@@ -95,10 +99,93 @@ public class TaskMController {
 	@FXML Button editS;
 
 	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 
+	       Connection conn = null;
+	       
+	       // Establishing a Connection
+	       try {
+	           conn = DriverManager.getConnection("jdbc:sqlite:src/application/task.db");
+	           System.out.println("Connected");
+	       } catch (SQLException e) {
+	             System.out.println(e.getMessage());
+	       }
+	       
+	       // Connect to the database and select name from the database and display it
+		   listViewS.setItems(schoolTask);
+	       Statement stmt = null;
+	       ResultSet rs_school = null;
+	       
+	       try {
+	    	   stmt = conn.createStatement();
+	    	   rs_school = stmt.executeQuery("SELECT name FROM taskM_school");
+
+	           while (rs_school.next()) {
+	               schoolTask.add(rs_school.getString(1));
+	               System.out.println("School: " + rs_school.getString(1));
+	           }
+	           
+	       } catch (SQLException e) {
+	    	   e.printStackTrace();
+	       }
+	       
+	       // Connect to the database and select name from the database and display it
+	       ListViewW.setItems(workTask);
+	       Statement stmt_work = null;
+	       ResultSet rs_work = null;
+	       try {
+	    	   stmt_work = conn.createStatement();
+	    	   rs_work = stmt_work.executeQuery("SELECT name FROM taskM_work");
+
+	           while (rs_work.next()) {
+	               workTask.add(rs_work.getString(1));
+	               System.out.println("Work: " + rs_work.getString(1));
+	           }
+	       } catch (SQLException e) {
+	    	   e.printStackTrace();
+	       }
+		
+	       // Connect to the database and select name from the database and display it
+	       ListViewP.setItems(personalTask);
+	       Statement stmt_personal = null;
+	       ResultSet rs_personal = null;
+	       try {
+	    	   stmt_personal = conn.createStatement();
+	    	   rs_personal = stmt_personal.executeQuery("SELECT name FROM taskM_personal");
+
+	           while (rs_personal.next()) {
+	               personalTask.add(rs_personal.getString(1));
+	               System.out.println("Personal: " + rs_personal.getString(1));
+	           }
+	       } catch (SQLException e) {
+	    	   e.printStackTrace();
+	       }
+	}
+
+	public class TaskFieldListCell extends TextFieldListCell<String> {
+		
+
+	    @Override
+		public void updateItem(String item, boolean empty) {
+	        super.updateItem(item, empty);
+	        setText(item);
+	        
+	        if(item != null && item.contains("IMPORTANT")) {
+	        	//setTextFill(Color.RED);
+	        	setText("IMPORTANT TASK DUE TODAY");
+	        }
+	        else if (item != null && item.contains("TOMORROW")) {
+	        	//setTextFill(Color.YELLOW);
+	        	setText("IMPORTANT TASK DUE TOMORROW");
+	        }
+	        
+	    }
+	}
 	
-	
-    
+    /**
+     * This method gets the current date to compare with the date the user added to see if it is a priority task
+     */
     LocalDate getCurrentDate() {
     	Date currentDate = new Date();
     	Instant instant = currentDate.toInstant();
@@ -121,22 +208,33 @@ public class TaskMController {
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
-        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " IMPORTANT DUE TODAY";
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Due Today";
+        		
+        	}
+        	int compareUserDate = date.getDayOfMonth();
+        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
+        	
+        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+        	{
+        		task= task + ("\u2605") + ("\u2605")+ " Pass Due Date";
         	}
         	
+   
+
+      
     	}
      	
     	if(addTaskS.getText() != null && addTaskS.getText().length() > 0) //check if a task has been inputed
     		{
     			schoolTask.add(task);
     			listViewS.setItems(schoolTask);//add task to listView
-    			listViewS.setCellFactory(TextFieldListCell.forListView());
+    	        listViewS.setCellFactory(TextFieldListCell.forListView());
     			addTaskS.clear(); //clear input for new task
     		}   	
 
     	// insert the record into the database
     	dbConnect connect = new dbConnect();
-    	connect.insertRecord(task,date);
+    	connect.insertSchoolRecord(task,date);
     }  
     
     @FXML
@@ -169,7 +267,7 @@ public class TaskMController {
     			// delete the record from  the database
     	    	dbConnect connect = new dbConnect();
     	    	try {
-					connect.deleteRecord(selected);
+					connect.deleteSchoolRecord(selected);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -216,7 +314,14 @@ public class TaskMController {
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
-        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " IMPORTANT DUE TODAY";
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " Due Today";
+        	}
+        	int compareUserDate = date.getDayOfMonth();
+        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
+        	
+        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+        	{
+        		task= task + ("\u2605") + ("\u2605")+ " Pass Due Date";
         	}
         	
     	}
@@ -231,7 +336,7 @@ public class TaskMController {
     	
     	// insert the record into the database
     	dbConnect connect = new dbConnect();
-    	connect.insertRecord(task,date);
+    	connect.insertWorkRecord(task,date);
     }
     
     @FXML
@@ -288,7 +393,7 @@ public class TaskMController {
         		// delete the record from  the database
     	    	dbConnect connect = new dbConnect();
     	    	try {
-    				connect.deleteRecord(selected);
+    				connect.deleteWorkRecord(selected);
     			} catch (SQLException e) {
     				// TODO Auto-generated catch block
     				e.printStackTrace();
@@ -314,7 +419,14 @@ public class TaskMController {
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
-        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " IMPORTANT DUE TODAY";
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " Due Today";
+        	}
+        	int compareUserDate = date.getDayOfMonth();
+        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
+        	
+        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+        	{
+        		task= task + ("\u2605") + ("\u2605")+ " Pass Due Date";
         	}
         	
     	}
@@ -330,7 +442,7 @@ public class TaskMController {
     	
     	// insert the record into the database
     	dbConnect connect = new dbConnect();
-    	connect.insertRecord(task,date);
+    	connect.insertPersonalRecord(task,date);
     }
     
     @FXML
@@ -386,7 +498,7 @@ public class TaskMController {
     			// delete the record from  the database
     	    	dbConnect connect = new dbConnect();
     	    	try {
-					connect.deleteRecord(selected);
+					connect.deletePersonalRecord(selected);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -394,93 +506,4 @@ public class TaskMController {
     		} 		
     	});
     }
-    
-    private class dbConnect {
-    	
-    	private static final String url = "jdbc:sqlite:src/application/task.db";
-        private static final String INSERT_QUERY = "INSERT INTO taskM(name, date) VALUES (?, ?)";
-        //private static final String UPDATE_QUERY = "UPDATE taskM SET name=? WHERE newName=?";
-        private static final String DELETE_QUERY = "DELETE FROM taskM WHERE name=?";
-        
-        public void insertRecord(String name, LocalDate date) throws SQLException {
-
-            // Step 1: Establishing a Connection and 
-            // try-with-resource statement will auto close the connection.
-            try (Connection connection = DriverManager
-                .getConnection(url, name, date.toString());
-
-                // Step 2:Create a statement using connection object
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY)) {
-                preparedStatement.setString(1, name);
-                preparedStatement.setString(2, date.toString());
-
-                System.out.println(preparedStatement);
-                // Step 3: Execute the query or update query
-                preparedStatement.executeUpdate();
-            } catch (SQLException e) {
-                // print SQL exception information
-                printSQLException(e);
-            }
-        }
-        
-//        public void editRecord(String name) throws SQLException {
-//    
-//            // Step 1: Establishing a Connection and 
-//            // try-with-resource statement will auto close the connection.
-//            try (Connection connection = DriverManager
-//                .getConnection(url);
-//    
-//                // Step 2:Create a statement using connection object
-//                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
-//                preparedStatement.setString(1, name);
-//    
-//                System.out.println(preparedStatement);
-//                // Step 3: Execute the query or update query
-//                preparedStatement.executeUpdate();
-//            } catch (SQLException e) {
-//                // print SQL exception information
-//                printSQLException(e);
-//            }
-//        }
-        
-      public void deleteRecord(String name) throws SQLException {
-
-          // Step 1: Establishing a Connection and 
-          // try-with-resource statement will auto close the connection.
-          try (Connection connection = DriverManager
-              .getConnection(url);
-
-              // Step 2:Create a statement using connection object
-              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_QUERY)) {
-              preparedStatement.setString(1, name);
-              //preparedStatement.setString(2, date.toString());
-
-              System.out.println(preparedStatement);
-              // Step 3: Execute the query or update query
-              preparedStatement.executeUpdate();
-          } catch (SQLException e) {
-              // print SQL exception information
-              printSQLException(e);
-          }
-      }
-        
-        
-
-        public void printSQLException(SQLException ex) {
-            for (Throwable e: ex) {
-                if (e instanceof SQLException) {
-                    e.printStackTrace(System.err);
-                    System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                    System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                    System.err.println("Message: " + e.getMessage());
-                    Throwable t = ex.getCause();
-                    while (t != null) {
-                        System.out.println("Cause: " + t);
-                        t = t.getCause();
-                    }
-                }
-            }
-        }
-    }
-
 }
