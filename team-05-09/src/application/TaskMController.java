@@ -8,12 +8,15 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
@@ -97,6 +100,9 @@ public class TaskMController implements Initializable{
     private String newTask;
 
 	@FXML Button editS;
+
+	@FXML TextField searchField;
+	
 
 	
 	@Override
@@ -506,5 +512,41 @@ public class TaskMController implements Initializable{
 				}
     		} 		
     	});
+    }
+    
+    /** 
+     * 	This method implements the search bar. 
+     * 	User search for the task and the task name and date will be shown in the list.
+     */
+    @FXML
+    public void searchTask()
+    {
+//    	//Wrap the ObservableList in a FilteredList (initially display all data).
+//      FilteredList<task> filteredData = new FilteredList<>(dataList, e -> true);
+//
+//        //Set the filter Predicate whenever the filter changes.
+//        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+//        filteredData.setPredicate(Task ->{
+//        // If filter text is empty, display all persons.
+//        	if(newValue == null || newValue.isEmpty()){
+//        		return true;
+//        		}
+//
+//             // Compare first name and last name of every client with filter text.
+//             String lowerCaseFilter = newValue.toLowerCase();
+//			 
+//			if(Task.getName().toLowerCase().contains(lowerCaseFilter)){
+//                 return true; //filter matches the name
+//             }
+//                 return false; //Does not match
+//             });
+//        });
+//        
+//        	// 3. Wrap the FilteredList in a SortedList. 
+//        	SortedList<task> sortedData = new SortedList<>(filteredData);
+//     		
+//            //4. put the sorted list into the listview
+//     		taskList.setItems(sortedData);
+       
     }
 }
