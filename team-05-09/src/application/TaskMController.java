@@ -208,7 +208,8 @@ public class TaskMController implements Initializable{
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
-        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Due Today";
+//        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Due Today";
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Hello";
         		
         	}
         	int compareUserDate = date.getDayOfMonth();
