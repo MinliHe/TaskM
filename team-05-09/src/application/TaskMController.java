@@ -34,7 +34,7 @@ public class TaskMController implements Initializable{
 	
 	//variables for School Section
     @FXML
-    private TextField searchTask;
+    private TextField taskLabel;
     
 	@FXML Button deleteS;
 
@@ -108,65 +108,65 @@ public class TaskMController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-	       Connection conn = null;
-	       
-	       // Establishing a Connection
-	       try {
-	           conn = DriverManager.getConnection("jdbc:sqlite:src/application/task.db");
-	           System.out.println("Connected");
-	       } catch (SQLException e) {
-	             System.out.println(e.getMessage());
-	       }
-	       
-	       // Connect to the database and select name from the database and display it
-		   listViewS.setItems(schoolTask);
-	       Statement stmt = null;
-	       ResultSet rs_school = null;
-	       
-	       try {
-	    	   stmt = conn.createStatement();
-	    	   rs_school = stmt.executeQuery("SELECT name FROM taskM_school");
-
-	           while (rs_school.next()) {
-	               schoolTask.add(rs_school.getString(1));
-	               System.out.println("School: " + rs_school.getString(1));
-	           }
-	           
-	       } catch (SQLException e) {
-	    	   e.printStackTrace();
-	       }
-	       
-	       // Connect to the database and select name from the database and display it
-	       ListViewW.setItems(workTask);
-	       Statement stmt_work = null;
-	       ResultSet rs_work = null;
-	       try {
-	    	   stmt_work = conn.createStatement();
-	    	   rs_work = stmt_work.executeQuery("SELECT name FROM taskM_work");
-
-	           while (rs_work.next()) {
-	               workTask.add(rs_work.getString(1));
-	               System.out.println("Work: " + rs_work.getString(1));
-	           }
-	       } catch (SQLException e) {
-	    	   e.printStackTrace();
-	       }
-		
-	       // Connect to the database and select name from the database and display it
-	       ListViewP.setItems(personalTask);
-	       Statement stmt_personal = null;
-	       ResultSet rs_personal = null;
-	       try {
-	    	   stmt_personal = conn.createStatement();
-	    	   rs_personal = stmt_personal.executeQuery("SELECT name FROM taskM_personal");
-
-	           while (rs_personal.next()) {
-	               personalTask.add(rs_personal.getString(1));
-	               System.out.println("Personal: " + rs_personal.getString(1));
-	           }
-	       } catch (SQLException e) {
-	    	   e.printStackTrace();
-	       }
+//	       Connection conn = null;
+//	       
+//	       // Establishing a Connection
+//	       try {
+//	           conn = DriverManager.getConnection("jdbc:sqlite:src/application/task.db");
+//	           System.out.println("Connected");
+//	       } catch (SQLException e) {
+//	             System.out.println(e.getMessage());
+//	       }
+//	       
+//	       // Connect to the database and select name from the database and display it
+//		   listViewS.setItems(schoolTask);
+//	       Statement stmt = null;
+//	       ResultSet rs_school = null;
+//	       
+//	       try {
+//	    	   stmt = conn.createStatement();
+//	    	   rs_school = stmt.executeQuery("SELECT name FROM taskM_school");
+//
+//	           while (rs_school.next()) {
+//	               schoolTask.add(rs_school.getString(1));
+//	               System.out.println("School: " + rs_school.getString(1));
+//	           }
+//	           
+//	       } catch (SQLException e) {
+//	    	   e.printStackTrace();
+//	       }
+//	       
+//	       // Connect to the database and select name from the database and display it
+//	       ListViewW.setItems(workTask);
+//	       Statement stmt_work = null;
+//	       ResultSet rs_work = null;
+//	       try {
+//	    	   stmt_work = conn.createStatement();
+//	    	   rs_work = stmt_work.executeQuery("SELECT name FROM taskM_work");
+//
+//	           while (rs_work.next()) {
+//	               workTask.add(rs_work.getString(1));
+//	               System.out.println("Work: " + rs_work.getString(1));
+//	           }
+//	       } catch (SQLException e) {
+//	    	   e.printStackTrace();
+//	       }
+//		
+//	       // Connect to the database and select name from the database and display it
+//	       ListViewP.setItems(personalTask);
+//	       Statement stmt_personal = null;
+//	       ResultSet rs_personal = null;
+//	       try {
+//	    	   stmt_personal = conn.createStatement();
+//	    	   rs_personal = stmt_personal.executeQuery("SELECT name FROM taskM_personal");
+//
+//	           while (rs_personal.next()) {
+//	               personalTask.add(rs_personal.getString(1));
+//	               System.out.println("Personal: " + rs_personal.getString(1));
+//	           }
+//	       } catch (SQLException e) {
+//	    	   e.printStackTrace();
+//	       }
 	}
 
 	public class TaskFieldListCell extends TextFieldListCell<String> {
@@ -237,11 +237,13 @@ public class TaskMController implements Initializable{
     			listViewS.setItems(schoolTask);//add task to listView
     	        listViewS.setCellFactory(TextFieldListCell.forListView());
     			addTaskS.clear(); //clear input for new task
+    			
+
+    	    	// insert the record into the database
+//    	    	dbConnect connect = new dbConnect();
+//    	    	connect.insertSchoolRecord(task,date);
     		}   	
 
-    	// insert the record into the database
-    	dbConnect connect = new dbConnect();
-    	connect.insertSchoolRecord(task,date);
     }  
     
     @FXML
@@ -521,6 +523,20 @@ public class TaskMController implements Initializable{
     @FXML
     public void searchTask()
     {
+    	System.out.println("Search Clicked");
+    	System.out.println(taskLabel.getText());
+    	
+    	for(String task: schoolTask) {
+    		System.out.println("School : " + task);
+    	}
+    	
+    	for(String task: workTask) {
+    		System.out.println("Work : " + task);
+    	}
+    	
+    	for(String task: personalTask) {
+    		System.out.println("Personal : " + task);
+    	}
 //    	//Wrap the ObservableList in a FilteredList (initially display all data).
 //      FilteredList<task> filteredData = new FilteredList<>(dataList, e -> true);
 //
