@@ -547,21 +547,21 @@ public class TaskMController implements Initializable{
     	String keyword = searchField.getText();
     	
     	for(String task: schoolTask) {
-    		//System.out.println("School : " + task);
+    		System.out.println("School : " + task);
     		if(task.contains(keyword)) {
     			taskMatch.add(task);
     		}
     	}
     	
     	for(String task: workTask) {
-    		//System.out.println("Work : " + task);
+    		System.out.println("Work : " + task);
     		if(task.contains(keyword)) {
     			taskMatch.add(task);
     		}
     	}
     	
     	for(String task: personalTask) {
-    		//System.out.println("Personal : " + task);
+    		System.out.println("Personal : " + task);
     		if(task.contains(keyword)) {
     			taskMatch.add(task);
     		}
@@ -572,8 +572,7 @@ public class TaskMController implements Initializable{
     	
     	
     	for(String task: taskMatch) {
-    		//System.out.println("Personal : " + task);
-    		System.out.println("MATCHED" + task);
+    		System.out.println("MATCHED: " + task);
 
     	}
    
