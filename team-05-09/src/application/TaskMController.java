@@ -15,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,6 +24,7 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
@@ -105,9 +107,20 @@ public class TaskMController implements Initializable{
 
 	@FXML Button editS;
 
-	@FXML TextField searchField;
 	
+	
+	//variables for Search Function
+	
+	@FXML TextField searchField;
 
+	@FXML
+	private Button searchButton;
+	
+	@FXML
+	ObservableList<String> taskMatch = FXCollections.observableArrayList();
+	
+	@FXML
+	private ListView<String> searchResults = new ListView<String>();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -530,14 +543,8 @@ public class TaskMController implements Initializable{
     @FXML
     public void searchTask()
     {
-//    	System.out.println("Search Clicked");
-//    	System.out.println(taskLabel.getText());
-  	
     	
     	String keyword = searchField.getText();
-  
-        ObservableList<String> taskMatch = FXCollections.observableArrayList();
-      	ListView<String> searchResult = new ListView<String>(taskMatch);
     	
     	for(String task: schoolTask) {
     		//System.out.println("School : " + task);
@@ -561,16 +568,29 @@ public class TaskMController implements Initializable{
 
     	}
     	
-    	for(String task: taskMatch) {
-    		System.out.println("Search Results Task: " + task);
-    	}
+    	System.out.println("Before FXCHANGE scnee");
     	
+    	
+    	for(String task: taskMatch) {
+    		//System.out.println("Personal : " + task);
+    		System.out.println("MATCHED" + task);
+
+    	}
+   
+
     	try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SearchResults.fxml"));
+//            TaskMController controller = fxmlLoader.getController();
+//            searchResults.setItems(taskMatch);
+//            controller.searchResults = this.searchResults;
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));  
+            stage.setScene(new Scene(root));
             stage.show();
+            
+            searchResults.setItems(taskMatch);
+    		
+            
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
@@ -605,5 +625,20 @@ public class TaskMController implements Initializable{
 //            //4. put the sorted list into the listview
 //     		taskList.setItems(sortedData);
        
+    }
+    
+    public void displayResults() {
+    	
+    	System.out.println("SEARCH BUTTON HAS BEEN CLCIKED");
+    	ObservableList<String> test = FXCollections.observableArrayList();
+    	test.add("Hello");
+    	searchResults.setItems(test);
+    	System.out.println("Printing schhol task results below:");
+    	
+    	for(String match : schoolTask) {
+    		System.out.println(match);
+    	}
+
+		
     }
 }
