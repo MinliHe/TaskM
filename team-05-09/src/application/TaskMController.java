@@ -13,13 +13,17 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
 
@@ -214,7 +218,6 @@ public class TaskMController implements Initializable{
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
-//        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Due Today";
         		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Hello";
         		
         	}
@@ -341,11 +344,13 @@ public class TaskMController implements Initializable{
     			ListViewW.setItems(workTask); //add task to listView
     			ListViewW.setCellFactory(TextFieldListCell.forListView());
     			addTaskW.clear(); //clear input for new task
+    			
+    	    	// insert the record into the database
+//    	    	dbConnect connect = new dbConnect();
+//    	    	connect.insertWorkRecord(task,date);
     		}
     	
-    	// insert the record into the database
-    	dbConnect connect = new dbConnect();
-    	connect.insertWorkRecord(task,date);
+
     }
     
     @FXML
@@ -447,11 +452,13 @@ public class TaskMController implements Initializable{
     			ListViewP.setItems(personalTask); //add task to listView 
     			ListViewP.setCellFactory(TextFieldListCell.forListView());
     			addTaskP.clear(); //clear input for new task
+    			
+    	    	// insert the record into the database
+//    	    	dbConnect connect = new dbConnect();
+//    	    	connect.insertPersonalRecord(task,date);
     		}
     	
-    	// insert the record into the database
-    	dbConnect connect = new dbConnect();
-    	connect.insertPersonalRecord(task,date);
+
     }
     
     @FXML
@@ -523,20 +530,54 @@ public class TaskMController implements Initializable{
     @FXML
     public void searchTask()
     {
-    	System.out.println("Search Clicked");
-    	System.out.println(taskLabel.getText());
+//    	System.out.println("Search Clicked");
+//    	System.out.println(taskLabel.getText());
+  	
+    	
+    	String keyword = searchField.getText();
+  
+        ObservableList<String> taskMatch = FXCollections.observableArrayList();
+      	ListView<String> searchResult = new ListView<String>(taskMatch);
     	
     	for(String task: schoolTask) {
-    		System.out.println("School : " + task);
+    		//System.out.println("School : " + task);
+    		if(task.contains(keyword)) {
+    			taskMatch.add(task);
+    		}
     	}
     	
     	for(String task: workTask) {
-    		System.out.println("Work : " + task);
+    		//System.out.println("Work : " + task);
+    		if(task.contains(keyword)) {
+    			taskMatch.add(task);
+    		}
     	}
     	
     	for(String task: personalTask) {
-    		System.out.println("Personal : " + task);
+    		//System.out.println("Personal : " + task);
+    		if(task.contains(keyword)) {
+    			taskMatch.add(task);
+    		}
+
     	}
+    	
+    	for(String task: taskMatch) {
+    		System.out.println("Search Results Task: " + task);
+    	}
+    	
+    	try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SearchResults.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));  
+            stage.show();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+
+
+    	
+
 //    	//Wrap the ObservableList in a FilteredList (initially display all data).
 //      FilteredList<task> filteredData = new FilteredList<>(dataList, e -> true);
 //
