@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class PopupSearchController {
@@ -23,7 +24,16 @@ public class PopupSearchController {
 	private ObservableList<String> searchList = FXCollections.observableArrayList();
 	@FXML
 	private ListView<String> searchResults = new ListView<String>();
-    
+	@FXML
+	private Text keyword;
+	
+public void setKeyWord(String text) {
+	this.keyword.setText(text);
+}
+
+ public void setSearchResults(ObservableList<String> searchList) {
+	 this.searchList= searchList;
+ }
    
   public void showResults(ActionEvent event) throws IOException{
 	  root = FXMLLoader.load(getClass().getResource("SearchResults.fxml"));
@@ -31,6 +41,20 @@ public class PopupSearchController {
 	  scene = new Scene(root);
 	  stage.setScene(scene);
 	  stage.show();
+  }
+  
+  public void displayResults() {
+//  	
+//  	System.out.println("SEARCH BUTTON HAS BEEN CLCIKED");
+//  	ObservableList<String> test = FXCollections.observableArrayList();
+//  	test.add("Hello");
+//  	searchResults.setItems(test);
+//  	System.out.println("Printing schhol task results below:");
+//  	
+
+	  searchResults.setItems(searchList);
+
+		
   }
   
   

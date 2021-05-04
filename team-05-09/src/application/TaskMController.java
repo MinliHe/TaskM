@@ -547,47 +547,47 @@ public class TaskMController implements Initializable{
     	String keyword = searchField.getText();
     	
     	for(String task: schoolTask) {
-    		System.out.println("School : " + task);
+    		//System.out.println("School : " + task);
     		if(task.contains(keyword)) {
     			taskMatch.add(task);
     		}
     	}
     	
     	for(String task: workTask) {
-    		System.out.println("Work : " + task);
+    		//System.out.println("Work : " + task);
     		if(task.contains(keyword)) {
     			taskMatch.add(task);
     		}
     	}
     	
     	for(String task: personalTask) {
-    		System.out.println("Personal : " + task);
+    		//System.out.println("Personal : " + task);
     		if(task.contains(keyword)) {
     			taskMatch.add(task);
     		}
 
     	}
     	
-    	System.out.println("Before FXCHANGE scnee");
-    	
-    	
-    	for(String task: taskMatch) {
-    		System.out.println("MATCHED: " + task);
 
-    	}
+    	
+
    
 
     	try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SearchResults.fxml"));
-//            TaskMController controller = fxmlLoader.getController();
-//            searchResults.setItems(taskMatch);
-//            controller.searchResults = this.searchResults;
             Parent root = (Parent) fxmlLoader.load();
+            
+            PopupSearchController controller = fxmlLoader.getController();
+            controller.setSearchResults(taskMatch);
+            controller.setKeyWord(searchField.getText());
+//            for(String test: taskMatch) {
+//            	System.out.println("task matched: " + test);
+//            }
+           
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
             
-            searchResults.setItems(taskMatch);
     		
             
     	} catch (Exception e) {
@@ -626,18 +626,5 @@ public class TaskMController implements Initializable{
        
     }
     
-    public void displayResults() {
-    	
-    	System.out.println("SEARCH BUTTON HAS BEEN CLCIKED");
-    	ObservableList<String> test = FXCollections.observableArrayList();
-    	test.add("Hello");
-    	searchResults.setItems(test);
-    	System.out.println("Printing schhol task results below:");
-    	
-    	for(String match : schoolTask) {
-    		System.out.println(match);
-    	}
 
-		
-    }
 }
