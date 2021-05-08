@@ -127,6 +127,10 @@ public class TaskMController implements Initializable{
 	@FXML
 	private ListView<String> searchResults = new ListView<String>();
 	
+	
+	private String task; 
+	private LocalDate date; 
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -190,26 +194,27 @@ public class TaskMController implements Initializable{
 	    	   e.printStackTrace();
 	       }
 	}
+	
 
-	public class TaskFieldListCell extends TextFieldListCell<String> {
-		
-
-	    @Override
-		public void updateItem(String item, boolean empty) {
-	        super.updateItem(item, empty);
-	        setText(item);
-	        
-	        if(item != null && item.contains("IMPORTANT")) {
-	        	//setTextFill(Color.RED);
-	        	setText("IMPORTANT TASK DUE TODAY");
-	        }
-	        else if (item != null && item.contains("TOMORROW")) {
-	        	//setTextFill(Color.YELLOW);
-	        	setText("IMPORTANT TASK DUE TOMORROW");
-	        }
-	        
-	    }
-	}
+//	public class TaskFieldListCell extends TextFieldListCell<String> {
+//		
+//
+//	    @Override
+//		public void updateItem(String item, boolean empty) {
+//	        super.updateItem(item, empty);
+//	        setText(item);
+//	        
+//	        if(item != null && item.contains("IMPORTANT")) {
+//	        	//setTextFill(Color.RED);
+//	        	setText("IMPORTANT TASK DUE TODAY");
+//	        }
+//	        else if (item != null && item.contains("TOMORROW")) {
+//	        	//setTextFill(Color.YELLOW);
+//	        	setText("IMPORTANT TASK DUE TOMORROW");
+//	        }
+//	        
+//	    }
+//	}
 	
     /**
      * This method gets the current date to compare with the date the user added to see if it is a priority task
@@ -228,11 +233,15 @@ public class TaskMController implements Initializable{
      * Then click on "Add" button. The task and due date are shown to the list.
      * @param event
      */
+   
+   
     @FXML
     void addS(ActionEvent event) throws SQLException {
-    	String task = addTaskS.getText();
-    	LocalDate date = datePickerS.getValue();
-    		
+//    	String task = addTaskS.getText();
+//    	LocalDate date = datePickerS.getValue();
+    	
+    	 task = addTaskS.getText();
+    	 date = datePickerS.getValue();
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
@@ -242,9 +251,9 @@ public class TaskMController implements Initializable{
         	int compareUserDate = date.getDayOfMonth();
         	int compareCurrentDate = getCurrentDate().getDayOfMonth();
         	
-        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+        	if(compareCurrentDate - compareUserDate == -1) // this means the task will be due tomorrow
         	{
-        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
+        		task= task + ("\u2605") + ("\u2605");
         	}
     	}
      	
@@ -261,13 +270,13 @@ public class TaskMController implements Initializable{
     	connect.insertSchoolRecord(task,date);
 
     }  
-    
-    @FXML
-    void addDateS(ActionEvent event) throws SQLException {
-    	LocalDate date = datePickerS.getValue();
-    	dateS.add(date);
-        dateListS.setItems(dateS);  	
-    }
+ // Should be delete this block of code   
+//    @FXML
+//    void addDateS(ActionEvent event) throws SQLException {
+//    	LocalDate date = datePickerS.getValue();
+//    	dateS.add(date);
+//        dateListS.setItems(dateS);  	
+//    }
     
     /** 
      * 	This method implements the "delete" button under School section. 
@@ -308,30 +317,35 @@ public class TaskMController implements Initializable{
      */
     @FXML
     public void editEventS() {
-//		{	
-//    	listViewS.setOnEditStart(start -> {
-//    		System.out.println("Edit Start");
-//    	});
-//    	listViewS.setOnEditCommit(commit -> {
-//    		listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
-//    		
-//        	// insert the record into the database
-//        	dbConnect connect = new dbConnect();
-//        	try {
-//				connect.editRecord(commit.getNewValue(),listViewS.getSelectionModel().getSelectedItem());
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//    	});
-//    	listViewS.setOnEditCancel(new EventHandler<ListView.EditEvent<String>>() {
-//			@Override
-//			public void handle(ListView.EditEvent<String> event) {
-//				// TODO Auto-generated method stub				
-//			} 		
-//    	}); 
-//    }
+		{	
+    	listViewS.setOnEditStart(start -> {
+    		System.out.println("Edit Start");
+    	});
+    	listViewS.setOnEditCommit(commit -> {
+    		listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
+    	});	
+        	
+    	listViewS.setOnEditCancel(new EventHandler<ListView.EditEvent<String>>() {
+			@Override
+			public void handle(ListView.EditEvent<String> event) {
+				// TODO Auto-generated method stub	
+				int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
+				String selected = "";
+				if(selectedIndex != -1) {
+				 selected = listViewS.getSelectionModel().getSelectedItem();}
+				// insert the record into the database
+	        	dbConnect connect = new dbConnect();
+	        	try {
+	        		connect.editSchoolRecord(task,date,selected);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+	    	
+			} 		
+    });}
+    	}
     	
-   
+  /* test 
     editS.setOnAction(new EventHandler<ActionEvent>()
 	{
 		@Override
@@ -357,9 +371,9 @@ public class TaskMController implements Initializable{
 	        	int compareUserDate = date.getDayOfMonth();
 	        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
 	        	
-	        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+	        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
 	        	{
-	        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
+	        		task= task + ("\u2605") + ("\u2605");
 	        	}
 	    	}
 			
