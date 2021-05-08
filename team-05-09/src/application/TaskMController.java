@@ -236,7 +236,7 @@ public class TaskMController implements Initializable{
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
-        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Hello";
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
         		
         	}
         	int compareUserDate = date.getDayOfMonth();
@@ -244,7 +244,7 @@ public class TaskMController implements Initializable{
         	
         	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
         	{
-        		task= task + ("\u2605") + ("\u2605")+ " Pass Due Date";
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
         	}
     	}
      	
@@ -351,7 +351,7 @@ public class TaskMController implements Initializable{
 			if(date != null) {
 	    		task = task + ": due "+ (date.toString());
 	        	if(date.equals(getCurrentDate())) {
-	        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Hello";
+	        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
 	        		
 	        	}
 	        	int compareUserDate = date.getDayOfMonth();
@@ -359,7 +359,7 @@ public class TaskMController implements Initializable{
 	        	
 	        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
 	        	{
-	        		task= task + ("\u2605") + ("\u2605")+ " Pass Due Date";
+	        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
 	        	}
 	    	}
 			
@@ -399,14 +399,14 @@ public class TaskMController implements Initializable{
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
-        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " Due Today";
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
         	}
         	int compareUserDate = date.getDayOfMonth();
         	int compareCurrentDate = getCurrentDate().getDayOfMonth();
         	
         	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
         	{
-        		task= task + ("\u2605") + ("\u2605")+ " Pass Due Date";
+        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
         	}
         	
     	}
@@ -459,7 +459,7 @@ public class TaskMController implements Initializable{
     			if(date != null) {
     	    		task = task + ": due "+ (date.toString());
     	        	if(date.equals(getCurrentDate())) {
-    	        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Hello";
+    	        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
     	        		
     	        	}
     	        	int compareUserDate = date.getDayOfMonth();
@@ -467,7 +467,7 @@ public class TaskMController implements Initializable{
     	        	
     	        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
     	        	{
-    	        		task= task + ("\u2605") + ("\u2605")+ " Pass Due Date";
+    	        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
     	        	}
     	    	}
     			
@@ -541,14 +541,14 @@ public class TaskMController implements Initializable{
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
-        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ " Due Today";
+        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
         	}
         	int compareUserDate = date.getDayOfMonth();
         	int compareCurrentDate = getCurrentDate().getDayOfMonth();
         	
         	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
         	{
-        		task= task + ("\u2605") + ("\u2605")+ " Pass Due Date";
+        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
         	}
         	
     	}
@@ -603,7 +603,7 @@ public class TaskMController implements Initializable{
     			if(date != null) {
     	    		task = task + ": due "+ (date.toString());
     	        	if(date.equals(getCurrentDate())) {
-    	        		task= task + ("\u2605") + ("\u2605") + ("\u2605")+ "  Hello";
+    	        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
     	        		
     	        	}
     	        	int compareUserDate = date.getDayOfMonth();
@@ -611,7 +611,7 @@ public class TaskMController implements Initializable{
     	        	
     	        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
     	        	{
-    	        		task= task + ("\u2605") + ("\u2605")+ " Pass Due Date";
+    	        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
     	        	}
     	    	}
     			
