@@ -12,7 +12,9 @@ public class dbConnect {
     private static final String INSERTschool_QUERY = "INSERT INTO taskM_school(name, date) VALUES (?, ?)";
     private static final String INSERTwork_QUERY = "INSERT INTO taskM_work(name, date) VALUES (?, ?)";
     private static final String INSERTpersonal_QUERY = "INSERT INTO taskM_personal(name, date) VALUES (?, ?)";
-    //private static final String UPDATE_QUERY = "UPDATE taskM SET name=? WHERE newName=?";
+    private static final String UPDATEschool_QUERY = "UPDATE taskM_school SET name=?,date= ? WHERE name=?";
+    private static final String UPDATEwork_QUERY = "UPDATE taskM_work SET name=?,date= ? WHERE name=?";
+    private static final String UPDATEpersonal_QUERY = "UPDATE taskM_personal SET name=?,date= ? WHERE name=?";
     private static final String DELETEschool_QUERY = "DELETE FROM taskM_school WHERE name=?";
     private static final String DELETEwork_QUERY = "DELETE FROM taskM_work WHERE name=?";
     private static final String DELETEpersonal_QUERY = "DELETE FROM taskM_personal WHERE name=?";
@@ -88,26 +90,74 @@ public class dbConnect {
         }
     }
     
-//    public void editRecord(String name) throws SQLException {
-//
-//        // Step 1: Establishing a Connection and 
-//        // try-with-resource statement will auto close the connection.
-//        try (Connection connection = DriverManager
-//            .getConnection(url);
-//
-//            // Step 2:Create a statement using connection object
-//            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
-//            preparedStatement.setString(1, name);
-//
-//            System.out.println(preparedStatement);
-//            // Step 3: Execute the query or update query
-//            preparedStatement.executeUpdate();
-//        } catch (SQLException e) {
-//            // print SQL exception information
-//            printSQLException(e);
-//        }
-//    }
-  
+    // update the school record into the database
+    public void editSchoolRecord(String newName,LocalDate date, String name) throws SQLException {
+
+        // Step 1: Establishing a Connection and 
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = DriverManager
+            .getConnection(url);
+
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATEschool_QUERY)) {
+            preparedStatement.setString(1, newName);
+            preparedStatement.setString(2, date.toString());
+            preparedStatement.setString(3, name);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+    }
+    
+    // update the work record into the database
+    public void editWorkRecord(String newName,LocalDate date, String name) throws SQLException {
+
+        // Step 1: Establishing a Connection and 
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = DriverManager
+            .getConnection(url);
+
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATEwork_QUERY)) {
+            preparedStatement.setString(1, newName);
+            preparedStatement.setString(2, date.toString());
+            preparedStatement.setString(3, name);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+    }
+    
+    // update the personal record into the database
+    public void editPersonalRecord(String newName,LocalDate date, String name) throws SQLException {
+
+        // Step 1: Establishing a Connection and 
+        // try-with-resource statement will auto close the connection.
+        try (Connection connection = DriverManager
+            .getConnection(url);
+
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATEpersonal_QUERY)) {
+            preparedStatement.setString(1, newName);
+            preparedStatement.setString(2, date.toString());
+            preparedStatement.setString(3, name);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+    }
     
     // delete the school record from the database
     public void deleteSchoolRecord(String name) throws SQLException {
@@ -236,6 +286,7 @@ public class dbConnect {
       }
   }
 
+    // print the SQL Exception in a particular format
     public void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {

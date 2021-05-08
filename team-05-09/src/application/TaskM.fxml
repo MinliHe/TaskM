@@ -63,7 +63,11 @@
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label layoutX="298.0" layoutY="84.0" text="Double Click To Update Task" textFill="#cf9dd0" />
+                                                            <Button fx:id="editW" layoutX="113.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#editEventW" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #E1BEE7;" text="Update">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Button>
                                                          </children>
                                                       </Pane>
                                                    </children>
@@ -105,7 +109,11 @@
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label layoutX="298.0" layoutY="84.0" text="Double Click To Edit Task" textFill="#cf9dd0" />
+                                                            <Button fx:id="editP" layoutX="113.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#editEventP" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #E1BEE7;" text="Update">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Button>
                                                          </children>
                                                       </Pane>
                                                    </children>
@@ -147,7 +155,11 @@
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label layoutX="298.0" layoutY="84.0" text="Double Click Item To Update Task" textFill="#cf9dd0" />
+                                                            <Button fx:id="editS" layoutX="108.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#editEventS" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #E1BEE7;" text="Update">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Button>
                                                          </children>
                                                       </Pane>
                                                    </children>
