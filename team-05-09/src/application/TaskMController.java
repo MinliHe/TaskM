@@ -680,21 +680,21 @@ public class TaskMController implements Initializable{
     	
     	for(String task: schoolTask) {
     		//System.out.println("School : " + task);
-    		if(task.contains(keyword)) {
+    		if(task.toLowerCase().contains(keyword.toLowerCase())) {
     			taskMatch.add(task);
     		}
     	}
     	
     	for(String task: workTask) {
     		//System.out.println("Work : " + task);
-    		if(task.contains(keyword)) {
+    		if(task.toLowerCase().contains(keyword.toLowerCase())) {
     			taskMatch.add(task);
     		}
     	}
     	
     	for(String task: personalTask) {
     		//System.out.println("Personal : " + task);
-    		if(task.contains(keyword)) {
+    		if(task.toLowerCase().contains(keyword.toLowerCase())) {
     			taskMatch.add(task);
     		}
 
@@ -715,11 +715,13 @@ public class TaskMController implements Initializable{
 //            for(String test: taskMatch) {
 //            	System.out.println("task matched: " + test);
 //            }
+            
+
            
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-            
+            stage.setOnCloseRequest( event -> {taskMatch.clear();} );
     		
             
     	} catch (Exception e) {
@@ -727,7 +729,7 @@ public class TaskMController implements Initializable{
     	}
 
 
-    	
+    
 
 //    	//Wrap the ObservableList in a FilteredList (initially display all data).
 //      FilteredList<task> filteredData = new FilteredList<>(dataList, e -> true);

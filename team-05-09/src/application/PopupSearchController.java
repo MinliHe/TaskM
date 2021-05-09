@@ -53,7 +53,8 @@ public void setKeyWord(String text) {
 //  	
 
 	  searchResults.setItems(searchList);
-
+	
+	  
 		
   }
   
