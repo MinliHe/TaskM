@@ -145,8 +145,8 @@ public class TaskMController implements Initializable{
 	       }
 	       
 	       // Connect to the database and select name from the database and display it
-	       listViewS.setEditable(true);
-	       listViewS.setCellFactory(TextFieldListCell.forListView());
+//	       listViewS.setEditable(true);
+//	       listViewS.setCellFactory(TextFieldListCell.forListView());
 		   listViewS.setItems(schoolTask);
 	       Statement stmt = null;
 	       ResultSet rs_school = null;
@@ -267,7 +267,7 @@ public class TaskMController implements Initializable{
     		{
     			schoolTask.add(task);
     			listViewS.setItems(schoolTask);//add task to listView
-    	        listViewS.setCellFactory(TextFieldListCell.forListView());
+//    	        listViewS.setCellFactory(TextFieldListCell.forListView());
     			addTaskS.clear(); //clear input for new task
     		}   
     	
@@ -322,10 +322,12 @@ public class TaskMController implements Initializable{
 		
 		@Override
 		public void handle(ActionEvent event) {
+ 
 
 		int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
     	String selected = listViewS.getSelectionModel().getSelectedItem() ;
-
+//		listViewS.setEditable(true);
+		listViewS.setCellFactory(TextFieldListCell.forListView());	
 		if(selectedIndex != -1) {
 			dbConnect connect = new dbConnect();
 			try {
@@ -335,6 +337,8 @@ public class TaskMController implements Initializable{
 				e.printStackTrace();
 			}
 		}
+//		listViewS.setEditable(true);
+//		listViewS.setCellFactory(TextFieldListCell.forListView());	
 		}
 	  });
     }
