@@ -642,21 +642,24 @@ public class TaskMController implements Initializable{
     	
     	for(String task: schoolTask) {
     		//System.out.println("School : " + task);
-    		if(task.toLowerCase().contains(keyword.toLowerCase())) {
+    		if(task.length() < keyword.length()) continue;
+    		if(task.substring(0,keyword.length()).toLowerCase().equals(keyword.toLowerCase())) {
     			taskMatch.add(task);
     		}
     	}
     	
     	for(String task: workTask) {
     		//System.out.println("Work : " + task);
-    		if(task.toLowerCase().contains(keyword.toLowerCase())) {
+    		if(task.length() < keyword.length()) continue;
+    		if(task.toLowerCase().equals(keyword.toLowerCase())) {
     			taskMatch.add(task);
     		}
     	}
     	
     	for(String task: personalTask) {
     		//System.out.println("Personal : " + task);
-    		if(task.toLowerCase().contains(keyword.toLowerCase())) {
+    		if(task.substring(0,keyword.length()).length() < keyword.length()) continue;
+    		if(task.substring(0,keyword.length()).toLowerCase().equals(keyword.toLowerCase())) {
     			taskMatch.add(task);
     		}
 
