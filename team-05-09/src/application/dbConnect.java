@@ -18,9 +18,7 @@ public class dbConnect {
     private static final String DELETEschool_QUERY = "DELETE FROM taskM_school WHERE name=?";
     private static final String DELETEwork_QUERY = "DELETE FROM taskM_work WHERE name=?";
     private static final String DELETEpersonal_QUERY = "DELETE FROM taskM_personal WHERE name=?";
-    private static final String SELECTschool_QUERY = "SELECT name FROM taskM_school";
-    private static final String SELECTwork_QUERY = "SELECT name FROM taskM_work";
-    private static final String SELECTpersonal_QUERY = "SELECT name FROM taskM_personal";
+
     
     
     // insert the school record into the database
@@ -223,69 +221,6 @@ public class dbConnect {
       }
   }
   
-    // select the school record from the database
-    public void selectSchoolRecord(String name) throws SQLException {
-
-      // Step 1: Establishing a Connection and 
-      // try-with-resource statement will auto close the connection.
-      try (Connection connection = DriverManager
-          .getConnection(url);
-
-          // Step 2:Create a statement using connection object
-          PreparedStatement preparedStatement = connection.prepareStatement(SELECTschool_QUERY)) {
-          preparedStatement.setString(1, name);
-
-          System.out.println(preparedStatement);
-          // Step 3: Execute the query or update query
-          preparedStatement.executeUpdate();
-      } catch (SQLException e) {
-          // print SQL exception information
-          printSQLException(e);
-      }
-  }
-  
-    // select the work record from the database
-    public void selectWorkRecord(String name) throws SQLException {
-
-      // Step 1: Establishing a Connection and 
-      // try-with-resource statement will auto close the connection.
-      try (Connection connection = DriverManager
-          .getConnection(url);
-
-          // Step 2:Create a statement using connection object
-          PreparedStatement preparedStatement = connection.prepareStatement(SELECTwork_QUERY)) {
-          preparedStatement.setString(1, name);
-
-          System.out.println(preparedStatement);
-          // Step 3: Execute the query or update query
-          preparedStatement.executeUpdate();
-      } catch (SQLException e) {
-          // print SQL exception information
-          printSQLException(e);
-      }
-  }
-  
-    // select the personal record from the database
-    public void selectPersonalRecord(String name) throws SQLException {
-
-      // Step 1: Establishing a Connection and 
-      // try-with-resource statement will auto close the connection.
-      try (Connection connection = DriverManager
-          .getConnection(url);
-
-          // Step 2:Create a statement using connection object
-          PreparedStatement preparedStatement = connection.prepareStatement(SELECTpersonal_QUERY)) {
-          preparedStatement.setString(1, name);
-
-          System.out.println(preparedStatement);
-          // Step 3: Execute the query or update query
-          preparedStatement.executeUpdate();
-      } catch (SQLException e) {
-          // print SQL exception information
-          printSQLException(e);
-      }
-  }
-
     // print the SQL Exception in a particular format
     public void printSQLException(SQLException ex) {
         for (Throwable e: ex) {

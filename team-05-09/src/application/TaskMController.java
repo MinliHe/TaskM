@@ -5,34 +5,26 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -242,9 +234,9 @@ public class TaskMController implements Initializable{
         	int compareUserDate = date.getDayOfMonth();
         	int compareCurrentDate = getCurrentDate().getDayOfMonth();
         	
-        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
         	{
-        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
+        		task= task + ("\u2605") + ("\u2605") ;
         	}
     	}
      	
@@ -261,14 +253,7 @@ public class TaskMController implements Initializable{
     	connect.insertSchoolRecord(task,date);
 
     }  
-    
-    @FXML
-    void addDateS(ActionEvent event) throws SQLException {
-    	LocalDate date = datePickerS.getValue();
-    	dateS.add(date);
-        dateListS.setItems(dateS);  	
-    }
-    
+     
     /** 
      * 	This method implements the "delete" button under School section. 
      * 	User select the task and click delete button. Task name and date will be removed from list.
@@ -308,30 +293,7 @@ public class TaskMController implements Initializable{
      */
     @FXML
     public void editEventS() {
-//		{	
-//    	listViewS.setOnEditStart(start -> {
-//    		System.out.println("Edit Start");
-//    	});
-//    	listViewS.setOnEditCommit(commit -> {
-//    		listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
-//    		
-//        	// insert the record into the database
-//        	dbConnect connect = new dbConnect();
-//        	try {
-//				connect.editRecord(commit.getNewValue(),listViewS.getSelectionModel().getSelectedItem());
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//    	});
-//    	listViewS.setOnEditCancel(new EventHandler<ListView.EditEvent<String>>() {
-//			@Override
-//			public void handle(ListView.EditEvent<String> event) {
-//				// TODO Auto-generated method stub				
-//			} 		
-//    	}); 
-//    }
-    	
-   
+
     editS.setOnAction(new EventHandler<ActionEvent>()
 	{
 		@Override
@@ -357,9 +319,9 @@ public class TaskMController implements Initializable{
 	        	int compareUserDate = date.getDayOfMonth();
 	        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
 	        	
-	        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+	        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
 	        	{
-	        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
+	        		task= task + ("\u2605") + ("\u2605");
 	        	}
 	    	}
 			
@@ -404,9 +366,9 @@ public class TaskMController implements Initializable{
         	int compareUserDate = date.getDayOfMonth();
         	int compareCurrentDate = getCurrentDate().getDayOfMonth();
         	
-        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
         	{
-        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
+        		task= task + ("\u2605") + ("\u2605");
         	}
         	
     	}
@@ -465,9 +427,9 @@ public class TaskMController implements Initializable{
     	        	int compareUserDate = date.getDayOfMonth();
     	        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
     	        	
-    	        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+    	        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
     	        	{
-    	        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
+    	        		task= task + ("\u2605") + ("\u2605");
     	        	}
     	    	}
     			
@@ -546,9 +508,9 @@ public class TaskMController implements Initializable{
         	int compareUserDate = date.getDayOfMonth();
         	int compareCurrentDate = getCurrentDate().getDayOfMonth();
         	
-        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
         	{
-        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
+        		task= task + ("\u2605") + ("\u2605");
         	}
         	
     	}
@@ -609,9 +571,9 @@ public class TaskMController implements Initializable{
     	        	int compareUserDate = date.getDayOfMonth();
     	        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
     	        	
-    	        	if(compareCurrentDate-compareUserDate == 1) // this means the task will be due tomorrow
+    	        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
     	        	{
-    	        		task= task + ("\u2605") + ("\u2605")+ ("\u2605");
+    	        		task= task + ("\u2605") + ("\u2605");
     	        	}
     	    	}
     			
@@ -701,10 +663,6 @@ public class TaskMController implements Initializable{
     	}
     	
 
-    	
-
-   
-
     	try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SearchResults.fxml"));
             Parent root = (Parent) fxmlLoader.load();
@@ -712,12 +670,7 @@ public class TaskMController implements Initializable{
             PopupSearchController controller = fxmlLoader.getController();
             controller.setSearchResults(taskMatch);
             controller.setKeyWord(searchField.getText());
-//            for(String test: taskMatch) {
-//            	System.out.println("task matched: " + test);
-//            }
-            
-
-           
+       
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
@@ -727,36 +680,6 @@ public class TaskMController implements Initializable{
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-
-
-    
-
-//    	//Wrap the ObservableList in a FilteredList (initially display all data).
-//      FilteredList<task> filteredData = new FilteredList<>(dataList, e -> true);
-//
-//        //Set the filter Predicate whenever the filter changes.
-//        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-//        filteredData.setPredicate(Task ->{
-//        // If filter text is empty, display all persons.
-//        	if(newValue == null || newValue.isEmpty()){
-//        		return true;
-//        		}
-//
-//             // Compare first name and last name of every client with filter text.
-//             String lowerCaseFilter = newValue.toLowerCase();
-//			 
-//			if(Task.getName().toLowerCase().contains(lowerCaseFilter)){
-//                 return true; //filter matches the name
-//             }
-//                 return false; //Does not match
-//             });
-//        });
-//        
-//        	// 3. Wrap the FilteredList in a SortedList. 
-//        	SortedList<task> sortedData = new SortedList<>(filteredData);
-//     		
-//            //4. put the sorted list into the listview
-//     		taskList.setItems(sortedData);
        
     }
     
