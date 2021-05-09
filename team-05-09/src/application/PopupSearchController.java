@@ -52,6 +52,7 @@ public void setKeyWord(String text) {
 //  	System.out.println("Printing schhol task results below:");
 //  	
 
+	  if(searchList.isEmpty()) searchList.add("No results named `" + keyword.getText() + "` found");
 	  searchResults.setItems(searchList);
 	
 	  
