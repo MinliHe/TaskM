@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+
+
 public class dbConnect {
 
 	private static final String url = "jdbc:sqlite:src/application/task.db";
@@ -91,18 +93,42 @@ public class dbConnect {
     }
     
     // update the school record into the database
-    public void editSchoolRecord(String newName,LocalDate date, String name) throws SQLException {
+//    public void editSchoolRecord(String newName,LocalDate date, String name) throws SQLException {
+//
+//        // Step 1: Establishing a Connection and 
+//        // try-with-resource statement will auto close the connection.
+//        try (Connection connection = DriverManager
+//            .getConnection(url);
+//
+//            // Step 2:Create a statement using connection object
+//            PreparedStatement preparedStatement = connection.prepareStatement(UPDATEschool_QUERY)) {
+//            preparedStatement.setString(1, newName);
+//            preparedStatement.setString(2, date.toString());
+//            preparedStatement.setString(3, name);
+//
+//            System.out.println(preparedStatement);
+//            // Step 3: Execute the query or update query
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            // print SQL exception information
+//            printSQLException(e);
+//        }
+//    }
+    
+    public void editSchoolRecord(String date, String name) throws SQLException {
 
         // Step 1: Establishing a Connection and 
         // try-with-resource statement will auto close the connection.
         try (Connection connection = DriverManager
             .getConnection(url);
+        	
 
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATEschool_QUERY)) {
-            preparedStatement.setString(1, newName);
-            preparedStatement.setString(2, date.toString());
-            preparedStatement.setString(3, name);
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERTschool_QUERY)) {
+        	 preparedStatement.setString(1, name);
+             preparedStatement.setString(2, date);
+//             preparedStatement.setString(3, name);
+           
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query

@@ -145,6 +145,8 @@ public class TaskMController implements Initializable{
 	       }
 	       
 	       // Connect to the database and select name from the database and display it
+	       listViewS.setEditable(true);
+	       listViewS.setCellFactory(TextFieldListCell.forListView());
 		   listViewS.setItems(schoolTask);
 	       Statement stmt = null;
 	       ResultSet rs_school = null;
@@ -163,6 +165,8 @@ public class TaskMController implements Initializable{
 	       }
 	       
 	       // Connect to the database and select name from the database and display it
+	       ListViewW.setEditable(true);
+	       ListViewW.setCellFactory(TextFieldListCell.forListView());
 	       ListViewW.setItems(workTask);
 	       Statement stmt_work = null;
 	       ResultSet rs_work = null;
@@ -179,6 +183,8 @@ public class TaskMController implements Initializable{
 	       }
 		
 	       // Connect to the database and select name from the database and display it
+	       ListViewP.setEditable(true);
+	       ListViewP.setCellFactory(TextFieldListCell.forListView());
 	       ListViewP.setItems(personalTask);
 	       Statement stmt_personal = null;
 	       ResultSet rs_personal = null;
@@ -317,33 +323,65 @@ public class TaskMController implements Initializable{
      */
     @FXML
     public void editEventS() {
-		{	
-    	listViewS.setOnEditStart(start -> {
-    		System.out.println("Edit Start");
-    	});
-    	listViewS.setOnEditCommit(commit -> {
-    		listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
-    	});	
-        	
-    	listViewS.setOnEditCancel(new EventHandler<ListView.EditEvent<String>>() {
-			@Override
-			public void handle(ListView.EditEvent<String> event) {
-				// TODO Auto-generated method stub	
-				int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
-				String selected = "";
-				if(selectedIndex != -1) {
-				 selected = listViewS.getSelectionModel().getSelectedItem();}
-				// insert the record into the database
-	        	dbConnect connect = new dbConnect();
-	        	try {
-	        		connect.editSchoolRecord(task,date,selected);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-	    	
-			} 		
-    });}
-    	}
+
+    	
+//    	int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
+//    	String selected = listViewS.getSelectionModel().getSelectedItem();
+//    	
+
+//    	
+//
+//		if(selectedIndex != -1) {
+//			dbConnect connect = new dbConnect();
+//			try {
+//				connect.deleteSchoolRecord(selected);
+//			}
+//			catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+	  editS.setOnAction(new EventHandler<ActionEvent>() {
+		
+		@Override
+		public void handle(ActionEvent event) {
+		
+    	
+//    	
+//    	listViewS.setOnEditStart(start -> {
+//    		System.out.println("Edit Start");
+//    	});
+//    	
+//		int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
+    	String selected = listViewS.getSelectionModel().getSelectedItem() ;
+//
+//		if(selectedIndex != -1) {
+//			
+//		
+//			dbConnect connect = new dbConnect();
+//			try {
+//				connect.deleteSchoolRecord(selected);
+//			}
+//			catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+			
+    	listViewS.setOnEditCommit(commit ->{ 
+			 listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
+    	  });			
+    	String sele = listViewS.getSelectionModel().getSelectedItem();
+			// insert the record into the database
+        	dbConnect connect = new dbConnect();
+        	try {
+        		connect.editSchoolRecord(sele,sele);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+    				
+    });
+	  }
+	 	
     	
   /* test 
     editS.setOnAction(new EventHandler<ActionEvent>()
