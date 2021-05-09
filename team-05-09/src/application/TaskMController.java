@@ -127,9 +127,9 @@ public class TaskMController implements Initializable{
 	@FXML
 	private ListView<String> searchResults = new ListView<String>();
 	
+	@FXML
+	private Button saveS;
 	
-	private String task; 
-	private LocalDate date; 
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -239,15 +239,15 @@ public class TaskMController implements Initializable{
      * Then click on "Add" button. The task and due date are shown to the list.
      * @param event
      */
-   
+    
    
     @FXML
     void addS(ActionEvent event) throws SQLException {
 //    	String task = addTaskS.getText();
 //    	LocalDate date = datePickerS.getValue();
     	
-    	 task = addTaskS.getText();
-    	 date = datePickerS.getValue();
+    	 String task = addTaskS.getText();
+    	 LocalDate date = datePickerS.getValue();
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
@@ -276,13 +276,7 @@ public class TaskMController implements Initializable{
     	connect.insertSchoolRecord(task,date);
 
     }  
- // Should be delete this block of code   
-//    @FXML
-//    void addDateS(ActionEvent event) throws SQLException {
-//    	LocalDate date = datePickerS.getValue();
-//    	dateS.add(date);
-//        dateListS.setItems(dateS);  	
-//    }
+
     
     /** 
      * 	This method implements the "delete" button under School section. 
@@ -324,48 +318,32 @@ public class TaskMController implements Initializable{
     @FXML
     public void editEventS() {
 
-    	
-//    	int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
-//    	String selected = listViewS.getSelectionModel().getSelectedItem();
-//    	
-
-//    	
-//
-//		if(selectedIndex != -1) {
-//			dbConnect connect = new dbConnect();
-//			try {
-//				connect.deleteSchoolRecord(selected);
-//			}
-//			catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
 	  editS.setOnAction(new EventHandler<ActionEvent>() {
 		
 		@Override
 		public void handle(ActionEvent event) {
-		
-    	
-//    	
-//    	listViewS.setOnEditStart(start -> {
-//    		System.out.println("Edit Start");
-//    	});
-//    	
-//		int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
+
+		int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
     	String selected = listViewS.getSelectionModel().getSelectedItem() ;
-//
-//		if(selectedIndex != -1) {
-//			
-//		
-//			dbConnect connect = new dbConnect();
-//			try {
-//				connect.deleteSchoolRecord(selected);
-//			}
-//			catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-			
+
+		if(selectedIndex != -1) {
+			dbConnect connect = new dbConnect();
+			try {
+				connect.deleteSchoolRecord(selected);
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		}
+	  });
+    }
+		
+    @FXML
+    public void saveEventS() {	
+    	saveS.setOnAction(new EventHandler<ActionEvent>() {
+    	@Override
+		public void handle(ActionEvent event) {
     	listViewS.setOnEditCommit(commit ->{ 
 			 listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
     	  });			

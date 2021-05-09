@@ -115,7 +115,7 @@ public class dbConnect {
 //        }
 //    }
     
-    public void editSchoolRecord(String date, String name) throws SQLException {
+    public void editSchoolRecord(String name, String date) throws SQLException {
 
         // Step 1: Establishing a Connection and 
         // try-with-resource statement will auto close the connection.

@@ -155,7 +155,12 @@
                                                                   <Font size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <Button fx:id="editS" layoutX="108.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#editEventS" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #E1BEE7;" text="Update">
+                                                            <Button fx:id="editS" layoutX="108.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#editEventS" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #E1BEE7;" text="Edit">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Button>
+                                                            <Button fx:id="saveS" layoutX="212.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveEventS" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #E1BEE7;" text="Save">
                                                                <font>
                                                                   <Font size="18.0" />
                                                                </font>
