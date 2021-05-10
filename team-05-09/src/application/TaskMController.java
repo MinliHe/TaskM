@@ -651,7 +651,7 @@ public class TaskMController implements Initializable{
     	for(String task: workTask) {
     		//System.out.println("Work : " + task);
     		if(task.length() < keyword.length()) continue;
-    		if(task.toLowerCase().equals(keyword.toLowerCase())) {
+    		if(task.substring(0,keyword.length()).toLowerCase().equals(keyword.toLowerCase())) {
     			taskMatch.add(task);
     		}
     	}
