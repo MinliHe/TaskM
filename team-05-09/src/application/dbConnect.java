@@ -12,9 +12,6 @@ public class dbConnect {
     private static final String INSERTschool_QUERY = "INSERT INTO taskM_school(name, date) VALUES (?, ?)";
     private static final String INSERTwork_QUERY = "INSERT INTO taskM_work(name, date) VALUES (?, ?)";
     private static final String INSERTpersonal_QUERY = "INSERT INTO taskM_personal(name, date) VALUES (?, ?)";
-    private static final String UPDATEschool_QUERY = "UPDATE taskM_school SET name=?,date= ? WHERE name=?";
-    private static final String UPDATEwork_QUERY = "UPDATE taskM_work SET name=?,date= ? WHERE name=?";
-    private static final String UPDATEpersonal_QUERY = "UPDATE taskM_personal SET name=?,date= ? WHERE name=?";
     private static final String DELETEschool_QUERY = "DELETE FROM taskM_school WHERE name=?";
     private static final String DELETEwork_QUERY = "DELETE FROM taskM_work WHERE name=?";
     private static final String DELETEpersonal_QUERY = "DELETE FROM taskM_personal WHERE name=?";
@@ -89,7 +86,7 @@ public class dbConnect {
     }
     
     // update the school record into the database
-    public void editSchoolRecord(String newName,LocalDate date, String name) throws SQLException {
+    public void editSchoolRecord(String name, String date ) throws SQLException {
 
         // Step 1: Establishing a Connection and 
         // try-with-resource statement will auto close the connection.
@@ -97,10 +94,9 @@ public class dbConnect {
             .getConnection(url);
 
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATEschool_QUERY)) {
-            preparedStatement.setString(1, newName);
-            preparedStatement.setString(2, date.toString());
-            preparedStatement.setString(3, name);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERTschool_QUERY)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, date);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -112,7 +108,7 @@ public class dbConnect {
     }
     
     // update the work record into the database
-    public void editWorkRecord(String newName,LocalDate date, String name) throws SQLException {
+    public void editWorkRecord(String name,String date) throws SQLException {
 
         // Step 1: Establishing a Connection and 
         // try-with-resource statement will auto close the connection.
@@ -120,10 +116,9 @@ public class dbConnect {
             .getConnection(url);
 
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATEwork_QUERY)) {
-            preparedStatement.setString(1, newName);
-            preparedStatement.setString(2, date.toString());
-            preparedStatement.setString(3, name);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERTwork_QUERY)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, date);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -135,7 +130,7 @@ public class dbConnect {
     }
     
     // update the personal record into the database
-    public void editPersonalRecord(String newName,LocalDate date, String name) throws SQLException {
+    public void editPersonalRecord(String name,String date) throws SQLException {
 
         // Step 1: Establishing a Connection and 
         // try-with-resource statement will auto close the connection.
@@ -143,10 +138,10 @@ public class dbConnect {
             .getConnection(url);
 
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATEpersonal_QUERY)) {
-            preparedStatement.setString(1, newName);
-            preparedStatement.setString(2, date.toString());
-            preparedStatement.setString(3, name);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERTpersonal_QUERY)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, date);
+            
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -210,8 +205,7 @@ public class dbConnect {
           // Step 2:Create a statement using connection object
           PreparedStatement preparedStatement = connection.prepareStatement(DELETEpersonal_QUERY)) {
           preparedStatement.setString(1, name);
-          //preparedStatement.setString(2, date.toString());
-
+          
           System.out.println(preparedStatement);
           // Step 3: Execute the query or update query
           preparedStatement.executeUpdate();

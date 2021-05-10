@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,19 +31,22 @@ import java.sql.Statement;
 
 public class TaskMController implements Initializable{
 	
+	
 	//variables for School Section
     @FXML
     private TextField taskLabel;
-    
-	@FXML Button deleteS;
-
-	@FXML TextField addTaskS;
-
-	@FXML Button addS;
-	
-	@FXML Button editS;
-	
-	@FXML DatePicker datePickerS;
+	@FXML
+	private Button deleteS;
+	@FXML 
+	private TextField addTaskS;
+	@FXML 
+	private Button addS;	
+	@FXML 
+	private Button editS;
+	@FXML 	
+	private Button saveS;	
+	@FXML
+	private DatePicker datePickerS;
 	@FXML
     private ObservableList<String> schoolTask = FXCollections.observableArrayList();
     @FXML
@@ -58,15 +61,18 @@ public class TaskMController implements Initializable{
     
 
     //variables for Work Section
-	@FXML TextField addTaskW;
-
-	@FXML Button addW;
-
-	@FXML Button deleteW;
-	
-	@FXML Button editW;
-
-	@FXML DatePicker datePickerW;
+	@FXML
+	private TextField addTaskW;
+	@FXML
+	private Button addW;
+	@FXML
+	private Button deleteW;	
+	@FXML
+	private Button editW;
+	@FXML
+	private Button saveW;
+	@FXML
+	private DatePicker datePickerW;
 	@FXML
     private ObservableList<String> workTask = FXCollections.observableArrayList();
 	@FXML
@@ -79,15 +85,18 @@ public class TaskMController implements Initializable{
     
 	
     //variables for Personal Section
-    @FXML TextField addTaskP;
-    
-	@FXML Button addP;
-	
-	@FXML Button deleteP;
-	
-	@FXML Button editP;
-	
-	@FXML DatePicker datePickerP;
+    @FXML 
+    private TextField addTaskP;    
+	@FXML 
+	private Button addP;	
+	@FXML 
+	private Button deleteP;	
+	@FXML 
+	private Button editP;
+	@FXML 
+	private Button saveP;
+	@FXML
+	private DatePicker datePickerP;
 	@FXML
     private ObservableList<String> personalTask = FXCollections.observableArrayList();
 	@FXML
@@ -105,19 +114,19 @@ public class TaskMController implements Initializable{
 
 
 	
-	
 	//variables for Search Function
 	
-	@FXML TextField searchField;
-
+	@FXML 
+	private TextField searchField;
 	@FXML
-	private Button searchButton;
-	
+	private Button searchButton;	
 	@FXML
-	ObservableList<String> taskMatch = FXCollections.observableArrayList();
-	
+	private ObservableList<String> taskMatch = FXCollections.observableArrayList();	
 	@FXML
 	private ListView<String> searchResults = new ListView<String>();
+	
+	
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -183,25 +192,6 @@ public class TaskMController implements Initializable{
 	       }
 	}
 
-	public class TaskFieldListCell extends TextFieldListCell<String> {
-		
-
-	    @Override
-		public void updateItem(String item, boolean empty) {
-	        super.updateItem(item, empty);
-	        setText(item);
-	        
-	        if(item != null && item.contains("IMPORTANT")) {
-	        	//setTextFill(Color.RED);
-	        	setText("IMPORTANT TASK DUE TODAY");
-	        }
-	        else if (item != null && item.contains("TOMORROW")) {
-	        	//setTextFill(Color.YELLOW);
-	        	setText("IMPORTANT TASK DUE TOMORROW");
-	        }
-	        
-	    }
-	}
 	
     /**
      * This method gets the current date to compare with the date the user added to see if it is a priority task
@@ -213,18 +203,19 @@ public class TaskMController implements Initializable{
     	
     	return localDate;
     }
+    
 	
     /**
-     * This method implements the "Add" button under School section.
+     * The "Add" button under School section.
      * User input task name in the text field, then pick a due day.
-     * Then click on "Add" button. The task and due date are shown to the list.
+     * Then click on "Add" button. 
      * @param event
      */
+    
     @FXML
-    void addS(ActionEvent event) throws SQLException {
-    	String task = addTaskS.getText();
-    	LocalDate date = datePickerS.getValue();
-    		
+    void addS(ActionEvent event) throws SQLException {    	
+    	 String task = addTaskS.getText();
+    	 LocalDate date = datePickerS.getValue();
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
@@ -234,9 +225,9 @@ public class TaskMController implements Initializable{
         	int compareUserDate = date.getDayOfMonth();
         	int compareCurrentDate = getCurrentDate().getDayOfMonth();
         	
-        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
+        	if(compareCurrentDate - compareUserDate == -1) // this means the task will be due tomorrow
         	{
-        		task= task + ("\u2605") + ("\u2605") ;
+        		task= task + ("\u2605") + ("\u2605");
         	}
     	}
      	
@@ -244,7 +235,6 @@ public class TaskMController implements Initializable{
     		{
     			schoolTask.add(task);
     			listViewS.setItems(schoolTask);//add task to listView
-    	        listViewS.setCellFactory(TextFieldListCell.forListView());
     			addTaskS.clear(); //clear input for new task
     		}   
     	
@@ -253,102 +243,76 @@ public class TaskMController implements Initializable{
     	connect.insertSchoolRecord(task,date);
 
     }  
-     
+
     /** 
-     * 	This method implements the "delete" button under School section. 
-     * 	User select the task and click delete button. Task name and date will be removed from list.
+     * 	The "delete" button under School section. 
+     * 	User select the task and click delete button. 
      */
     @FXML
-    public void deleteEventS()
-    {
-    	deleteS.setOnAction(new EventHandler<ActionEvent>()
-    	{
-    		@Override
-    		public void handle(ActionEvent event)
-    		{
-    			int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
-    			String selected = "";
-    			if (selectedIndex != -1)
-    			{
-    				selected = listViewS.getSelectionModel().getSelectedItem();
-    				listViewS.getItems().remove(selected);
-    			}	
-    			
-    			// delete the record from  the database
-    	    	dbConnect connect = new dbConnect();
-    	    	try {
-					connect.deleteSchoolRecord(selected);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		}
-    	});
+     void deleteEventS(ActionEvent event) throws SQLException {
+    
+		int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
+		String selected = "";
+		if (selectedIndex != -1)
+		{
+			selected = listViewS.getSelectionModel().getSelectedItem();
+			listViewS.getItems().remove(selected);
+		}	
+		
+		// delete the record from  the database
+    	dbConnect connect = new dbConnect();
+    	try {
+			connect.deleteSchoolRecord(selected);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	
     }
     
     /**
      * THis method allow in-line update of task name and date.
-     * User double click on item, and use keyboard to make a change. 
-     * When done, press return button.
+     * User select a task,press edit to enter edit mode and use keyboard to make a change. 
+     * press enter to confirm finishing change, and click save button to save to database
      */
+    
     @FXML
-    public void editEventS() {
+    void editEventS(ActionEvent event) throws SQLException { 
 
-    editS.setOnAction(new EventHandler<ActionEvent>()
-	{
-		@Override
-		public void handle(ActionEvent event)
-		{
-			
-			int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
-			String selected = listViewS.getSelectionModel().getSelectedItem();
-			String task = addTaskS.getText();
-	    	LocalDate date = datePickerS.getValue();
-	    	
-			if (selectedIndex != -1)
-			{
-				listViewS.getItems().remove(selected);
-			}	
-			
-			if(date != null) {
-	    		task = task + ": due "+ (date.toString());
-	        	if(date.equals(getCurrentDate())) {
-	        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
-	        		
-	        	}
-	        	int compareUserDate = date.getDayOfMonth();
-	        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
-	        	
-	        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
-	        	{
-	        		task= task + ("\u2605") + ("\u2605");
-	        	}
-	    	}
-			
-	    	if(addTaskS.getText() != null && addTaskS.getText().length() > 0) //check if a task has been inputed
-    		{
-    			schoolTask.add(task);
-    			listViewS.setItems(schoolTask);//add task to listView
-    	        listViewS.setCellFactory(TextFieldListCell.forListView());
-    			addTaskS.clear(); //clear input for new task
-    		}   
-		    	
-	    	// edit the record into the database
-	    	dbConnect connect = new dbConnect();
-	    	try {
-				connect.editSchoolRecord(task,date,selected);
+   	String selected = listViewS.getSelectionModel().getSelectedItem() ;
+		listViewS.setEditable(true);
+		listViewS.setCellFactory(TextFieldListCell.forListView());	
+			dbConnect connect = new dbConnect();
+			try {
+				connect.deleteSchoolRecord(selected);
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		listViewS.setOnEditCommit(commit ->{ 
+		listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
+	    	  });
+
+   }
+   
+    @FXML
+     void saveEventS(ActionEvent event) throws SQLException { 				
+    	String sele = listViewS.getSelectionModel().getSelectedItem();
+			// insert the record into the database
+        	dbConnect connect = new dbConnect();
+        	try {
+        		connect.editSchoolRecord(sele,sele);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-		}
-	});
-}
+        	listViewS.setEditable(false);
+
+	  }
+	 	
     
     /**
-     * This method implements the "Add" button under work section.
+     * The "Add" button under work section.
      * User input task name in the text field, then pick a due day.
-     * Then click on "Add" button. The task and due date are shown to the list.
+     * Then click on "Add" button. 
      * @param event
      * @throws SQLException 
      */
@@ -356,8 +320,7 @@ public class TaskMController implements Initializable{
     void addW(ActionEvent event) throws SQLException {
     	LocalDate date = datePickerW.getValue();
     	String task = addTaskW.getText();
-    	
-    	
+
     	if(date != null) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
@@ -377,7 +340,6 @@ public class TaskMController implements Initializable{
     		{	
     			workTask.add(task);
     			ListViewW.setItems(workTask); //add task to listView
-    			ListViewW.setCellFactory(TextFieldListCell.forListView());
     			addTaskW.clear(); //clear input for new task
     		}
     	// insert the record into the database
@@ -385,113 +347,75 @@ public class TaskMController implements Initializable{
     	connect.insertWorkRecord(task,date);
 
     }
-    
-    @FXML
-    void addDateW(ActionEvent event) {
-    	LocalDate date = datePickerW.getValue();
-    	dateW.add(date);
-    	dateListW.setItems(dateW);
 
-    }
-    
     /**
      * THis method allow in-line update of task name and date.
-     * User double click on item, and use keyboard to make a change. When done, press
-     * return button.
+     * User select a task,press edit to enter edit mode and use keyboard to make a change. 
+     * press enter to confirm finishing change, and click save button to save to database
      */
-    @FXML
-    public void editEventW()
-    {	
-    	editW.setOnAction(new EventHandler<ActionEvent>()
-    	{
-    		@Override
-    		public void handle(ActionEvent event)
-    		{
-    			
-    			int selectedIndex = ListViewW.getSelectionModel().getSelectedIndex();
-    			String selected = ListViewW.getSelectionModel().getSelectedItem();
-    			String task = addTaskW.getText();
-    	    	LocalDate date = datePickerW.getValue();
-    	    	
-    			if (selectedIndex != -1)
-    			{
-    				ListViewW.getItems().remove(selected);
-    			}	
-    			
-    			if(date != null) {
-    	    		task = task + ": due "+ (date.toString());
-    	        	if(date.equals(getCurrentDate())) {
-    	        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
-    	        		
-    	        	}
-    	        	int compareUserDate = date.getDayOfMonth();
-    	        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
-    	        	
-    	        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
-    	        	{
-    	        		task= task + ("\u2605") + ("\u2605");
-    	        	}
-    	    	}
-    			
-    			if(addTaskW.getText() != null && addTaskW.getText().length() > 0) //check if a task has been inputed
-        		{	
-        			workTask.add(task);
-        			ListViewW.setItems(workTask); //add task to listView
-        			ListViewW.setCellFactory(TextFieldListCell.forListView());
-        			addTaskW.clear(); //clear input for new task
-        		}
-    		    	
-    	    	// edit the record into the database
-    	    	dbConnect connect = new dbConnect();
-    	    	try {
-    				connect.editWorkRecord(task,date,selected);
-    			} catch (SQLException e) {
-    				e.printStackTrace();
-    			}
-    			
-    		}
-    	});
-    }
     
-    /** 
-     * 	This method implements the "delete" button under work section. 
-     * 	User select the task and click delete button. Task name and date will be removed from list.
+    @FXML
+    void editEventW(ActionEvent event) throws SQLException { 
+
+   	String selected = ListViewW.getSelectionModel().getSelectedItem() ;
+		ListViewW.setEditable(true);
+		ListViewW.setCellFactory(TextFieldListCell.forListView());	
+			dbConnect connect = new dbConnect();
+			try {
+				connect.deleteWorkRecord(selected);
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		ListViewW.setOnEditCommit(commit ->{ 
+		ListViewW.getItems().set(commit.getIndex(), commit.getNewValue());
+	    	  });
+
+   }
+   
+    @FXML
+     void saveEventW(ActionEvent event) throws SQLException { 				
+    	String sele = ListViewW.getSelectionModel().getSelectedItem();
+			// insert the record into the database
+        	dbConnect connect = new dbConnect();
+        	try {
+        		connect.editWorkRecord(sele,sele);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        	ListViewW.setEditable(false);
+
+	  }
+	 	
+    /** The "delete" button under work section. 
+     * 	User select the task and click delete button. 
      * @throws SQLException 
      */
     @FXML
-    public void deleteEventW() throws SQLException
-    {
-    	deleteW.setOnAction(new EventHandler<ActionEvent>()
-    	{
-    		@Override
-    		public void handle(ActionEvent event)
-    		{
-    			int selectedIndex = ListViewW.getSelectionModel().getSelectedIndex();
-    			String selected = "";
-    			if (selectedIndex != -1)
-    			{
-    				selected = ListViewW.getSelectionModel().getSelectedItem();
-    				ListViewW.getItems().remove(selected);
-    			}
-    			
-        		// delete the record from  the database
-    	    	dbConnect connect = new dbConnect();
-    	    	try {
-    				connect.deleteWorkRecord(selected);
-    			} catch (SQLException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    			}
-    		} 	
-    	});
-    	
+     void deleteEventW(ActionEvent event) throws SQLException{
+  
+		int selectedIndex = ListViewW.getSelectionModel().getSelectedIndex();
+		String selected = "";
+		if (selectedIndex != -1)
+		{
+			selected = ListViewW.getSelectionModel().getSelectedItem();
+			ListViewW.getItems().remove(selected);
+		}
+		
+		// delete the record from  the database
+    	dbConnect connect = new dbConnect();
+    	try {
+			connect.deleteWorkRecord(selected);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	 	
     }
     
     
     /**
-     * This method implements the "Add" button under personal section.
+     * The "Add" button under personal section.
      * User input task name in the text field, then pick a due day.
-     * Then click on "Add" button. The task and due date are shown to the list.
+     * Then click on "Add" button. 
      * @param event
      * @throws SQLException 
      */
@@ -515,12 +439,10 @@ public class TaskMController implements Initializable{
         	
     	}
     	
-
     	if(addTaskP.getText() != null && addTaskP.getText().length() > 0) //check if a task has been inputed
     		{
     			personalTask.add(task);
     			ListViewP.setItems(personalTask); //add task to listView 
-    			ListViewP.setCellFactory(TextFieldListCell.forListView());
     			addTaskP.clear(); //clear input for new task
     			
     		}
@@ -529,105 +451,70 @@ public class TaskMController implements Initializable{
     	connect.insertPersonalRecord(task,date);
 
     }
-    
-    @FXML
-    void addDateP(ActionEvent event) {
-    	LocalDate date = datePickerP.getValue();
-    	dateP.add(date);
-    	dateListP.setItems(dateP);
-    	dateP.clear();
-    }
+
     
     /**
      * THis method allow in-line update of task name and date.
-     * User double click on item, and use keyboard to make a change. When done, press
-     * return button.
+     * User select a task,press edit to enter edit mode and use keyboard to make a change. 
+     * press enter to confirm finishing change, and click save button to save to database
      */
+    
     @FXML
-    public void editEventP()
-    {	
-    	editP.setOnAction(new EventHandler<ActionEvent>()
-    	{
-    		@Override
-    		public void handle(ActionEvent event)
-    		{
-    			
-    			int selectedIndex = ListViewP.getSelectionModel().getSelectedIndex();
-    			String selected = ListViewP.getSelectionModel().getSelectedItem();
-    			String task = addTaskP.getText();
-    	    	LocalDate date = datePickerP.getValue();
-    	    	
-    			if (selectedIndex != -1)
-    			{
-    				ListViewP.getItems().remove(selected);
-    			}	
-    			
-    			if(date != null) {
-    	    		task = task + ": due "+ (date.toString());
-    	        	if(date.equals(getCurrentDate())) {
-    	        		task= task + ("\u2605") + ("\u2605") + ("\u2605");
-    	        		
-    	        	}
-    	        	int compareUserDate = date.getDayOfMonth();
-    	        	int compareCurrentDate = getCurrentDate().getDayOfMonth();
-    	        	
-    	        	if(compareCurrentDate-compareUserDate == -1) // this means the task will be due tomorrow
-    	        	{
-    	        		task= task + ("\u2605") + ("\u2605");
-    	        	}
-    	    	}
-    			
-    			if(addTaskP.getText() != null && addTaskP.getText().length() > 0) //check if a task has been inputed
-        		{
-        			personalTask.add(task);
-        			ListViewP.setItems(personalTask); //add task to listView 
-        			ListViewP.setCellFactory(TextFieldListCell.forListView());
-        			addTaskP.clear(); //clear input for new task
-        			
-        		}
-    		    	
-    	    	// edit the record into the database
-    	    	dbConnect connect = new dbConnect();
-    	    	try {
-    				connect.editPersonalRecord(task,date,selected);
-    			} catch (SQLException e) {
-    				e.printStackTrace();
-    			}
-    			
-    		}
-    	});
-    }
+    void editEventP(ActionEvent event) throws SQLException { 
+
+   	String selected = ListViewP.getSelectionModel().getSelectedItem() ;
+		ListViewP.setEditable(true);
+		ListViewP.setCellFactory(TextFieldListCell.forListView());	
+			dbConnect connect = new dbConnect();
+			try {
+				connect.deletePersonalRecord(selected);
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		ListViewP.setOnEditCommit(commit ->{ 
+		ListViewP.getItems().set(commit.getIndex(), commit.getNewValue());
+	    	  });
+
+   }
+   
+    @FXML
+     void saveEventP(ActionEvent event) throws SQLException { 				
+    	String sele = ListViewP.getSelectionModel().getSelectedItem();
+			// insert the record into the database
+        	dbConnect connect = new dbConnect();
+        	try {
+        		connect.editPersonalRecord(sele,sele);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        	ListViewP.setEditable(false);
+
+	  }
+	 	
     
     /** 
-     * 	This method implements the "delete" button under personal section. 
-     * 	User select the task and click delete button. Task name and date will be removed from list.
+     * 	The "delete" button under personal section. 
+     * 	User select the task and click delete button. 
      */
     @FXML
-    public void deleteEventP()
-    {
-    	deleteP.setOnAction(new EventHandler<ActionEvent>()
-    	{
-    		@Override
-    		public void handle(ActionEvent event)
-    		{
-    			int selectedIndex = ListViewP.getSelectionModel().getSelectedIndex();
-    			String selected = "";
-    			if (selectedIndex != -1)
-    			{
-    				selected = ListViewP.getSelectionModel().getSelectedItem();
-    				ListViewP.getItems().remove(selected);
-    			}
-    			
-    			// delete the record from  the database
-    	    	dbConnect connect = new dbConnect();
-    	    	try {
-					connect.deletePersonalRecord(selected);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		} 		
-    	});
+   void deleteEventP(ActionEvent event) throws SQLException {
+
+		int selectedIndex = ListViewP.getSelectionModel().getSelectedIndex();
+		String selected = "";
+		if (selectedIndex != -1)
+		{
+			selected = ListViewP.getSelectionModel().getSelectedItem();
+			ListViewP.getItems().remove(selected);
+		}
+		
+		// delete the record from  the database
+    	dbConnect connect = new dbConnect();
+    	try {
+			connect.deletePersonalRecord(selected);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
     
     /** 
