@@ -165,8 +165,8 @@ public class TaskMController implements Initializable{
 	       }
 	       
 	       // Connect to the database and select name from the database and display it
-	       ListViewW.setEditable(true);
-	       ListViewW.setCellFactory(TextFieldListCell.forListView());
+//	       ListViewW.setEditable(true);
+//	       ListViewW.setCellFactory(TextFieldListCell.forListView());
 	       ListViewW.setItems(workTask);
 	       Statement stmt_work = null;
 	       ResultSet rs_work = null;
@@ -183,8 +183,8 @@ public class TaskMController implements Initializable{
 	       }
 		
 	       // Connect to the database and select name from the database and display it
-	       ListViewP.setEditable(true);
-	       ListViewP.setCellFactory(TextFieldListCell.forListView());
+//	       ListViewP.setEditable(true);
+//	       ListViewP.setCellFactory(TextFieldListCell.forListView());
 	       ListViewP.setItems(personalTask);
 	       Statement stmt_personal = null;
 	       ResultSet rs_personal = null;
@@ -283,13 +283,13 @@ public class TaskMController implements Initializable{
      * 	User select the task and click delete button. Task name and date will be removed from list.
      */
     @FXML
-    public void deleteEventS()
-    {
-    	deleteS.setOnAction(new EventHandler<ActionEvent>()
-    	{
-    		@Override
-    		public void handle(ActionEvent event)
-    		{
+    void deleteEventS(ActionEvent event) throws SQLException {
+    
+//    	deleteS.setOnAction(new EventHandler<ActionEvent>()
+//    	{
+//    		@Override
+//    		public void handle(ActionEvent event)
+//    		{
     			int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
     			String selected = "";
     			if (selectedIndex != -1)
@@ -306,8 +306,8 @@ public class TaskMController implements Initializable{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-    		}
-    	});
+//    		}
+//    	});
     }
     
     /**
@@ -316,19 +316,20 @@ public class TaskMController implements Initializable{
      * When done, press return button.
      */
     @FXML
-    public void editEventS() {
+     void editEventS(ActionEvent event) throws SQLException { 
 
-	  editS.setOnAction(new EventHandler<ActionEvent>() {
+//	  editS.setOnAction(new EventHandler<ActionEvent>() {
+//	  
+//	
+//		@Override
+//		public void handle(ActionEvent event) {
 		
-		@Override
-		public void handle(ActionEvent event) {
- 
 
-		int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
+//		int selectedIndex = listViewS.getSelectionModel().getSelectedIndex();
     	String selected = listViewS.getSelectionModel().getSelectedItem() ;
-//		listViewS.setEditable(true);
+		listViewS.setEditable(true);
 		listViewS.setCellFactory(TextFieldListCell.forListView());	
-		if(selectedIndex != -1) {
+//		if(selectedIndex != -1) {
 			dbConnect connect = new dbConnect();
 			try {
 				connect.deleteSchoolRecord(selected);
@@ -336,21 +337,25 @@ public class TaskMController implements Initializable{
 			catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+			listViewS.setOnEditCommit(commit ->{ 
+				 listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
+	    	  });
+//		}
+		
 //		listViewS.setEditable(true);
 //		listViewS.setCellFactory(TextFieldListCell.forListView());	
-		}
-	  });
+//		}
+//	  });
     }
 		
     @FXML
-    public void saveEventS() {	
-    	saveS.setOnAction(new EventHandler<ActionEvent>() {
-    	@Override
-		public void handle(ActionEvent event) {
-    	listViewS.setOnEditCommit(commit ->{ 
-			 listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
-    	  });			
+    public void saveEventS(ActionEvent event) throws SQLException { 	
+//    	saveS.setOnAction(new EventHandler<ActionEvent>() {
+//    	@Override
+//		public void handle(ActionEvent event) {
+//    	listViewS.setOnEditCommit(commit ->{ 
+//			 listViewS.getItems().set(commit.getIndex(), commit.getNewValue());
+//    	  });			
     	String sele = listViewS.getSelectionModel().getSelectedItem();
 			// insert the record into the database
         	dbConnect connect = new dbConnect();
@@ -359,9 +364,10 @@ public class TaskMController implements Initializable{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+        	listViewS.setEditable(false);
+//		}
     				
-    });
+//    });
 	  }
 	 	
     	
