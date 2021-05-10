@@ -218,7 +218,7 @@ public class TaskMController implements Initializable{
     void addS(ActionEvent event) throws SQLException {    	
     	 String task = addTaskS.getText();
     	 LocalDate date = datePickerS.getValue();
-    	if(date != null && addTaskS.getText() != null && addTaskS.getText().length() > 0) {
+    	if(date != null && task != null && task.length() > 0) {	
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
         		task= task + ("\u2605") + ("\u2605") + ("\u2605");
@@ -243,8 +243,9 @@ public class TaskMController implements Initializable{
     	else
     	{
     		Alert dateError = new Alert(AlertType.ERROR);
-    		dateError.setContentText("Please Pick A Due Date.");
+    		dateError.setContentText("Please Add Task or Pick a Date.");
     		dateError.show();
+    		
     	}
 
     }  
@@ -326,8 +327,8 @@ public class TaskMController implements Initializable{
     	LocalDate date = datePickerW.getValue();
     	String task = addTaskW.getText();
 
-    	if(date != null && addTaskW.getText() != null && addTaskW.getText().length() > 0) //check if a task has been inputed)
-    	{
+    	if(date != null && task != null && task.length() > 0) {	 //check if a task has been inputed)
+    	
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
         		task= task + ("\u2605") + ("\u2605") + ("\u2605");
@@ -352,7 +353,7 @@ public class TaskMController implements Initializable{
     	else
     	{
     		Alert dateError = new Alert(AlertType.ERROR);
-    		dateError.setContentText("Please Pick A Due Date.");
+    		dateError.setContentText("Please Add Task or Pick a Date.");
     		dateError.show();
     	}
 
@@ -434,8 +435,8 @@ public class TaskMController implements Initializable{
     	LocalDate date = datePickerP.getValue();
     	String task = addTaskP.getText();
     	
-    	if(date != null && addTaskP.getText() != null && addTaskP.getText().length() > 0) 
-    	{
+    	if(date != null && task != null && task.length() > 0) {	 
+    	
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
         		task= task + ("\u2605") + ("\u2605") + ("\u2605");
@@ -460,7 +461,7 @@ public class TaskMController implements Initializable{
     	else
     	{
     		Alert dateError = new Alert(AlertType.ERROR);
-    		dateError.setContentText("Please Pick A Due Date.");
+    		dateError.setContentText("Please Add Task or Pick a Date.");
     		dateError.show();
     	}
 
