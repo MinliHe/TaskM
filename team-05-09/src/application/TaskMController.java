@@ -14,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -216,7 +218,7 @@ public class TaskMController implements Initializable{
     void addS(ActionEvent event) throws SQLException {    	
     	 String task = addTaskS.getText();
     	 LocalDate date = datePickerS.getValue();
-    	if(date != null) {
+    	if(date != null && addTaskS.getText() != null && addTaskS.getText().length() > 0) {
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
         		task= task + ("\u2605") + ("\u2605") + ("\u2605");
@@ -229,18 +231,21 @@ public class TaskMController implements Initializable{
         	{
         		task= task + ("\u2605") + ("\u2605");
         	}
+        	
+        	schoolTask.add(task);
+			listViewS.setItems(schoolTask);//add task to listView
+			addTaskS.clear(); //clear input for new task
+			
+			// insert the record into the database
+	    	dbConnect connect = new dbConnect();
+	    	connect.insertSchoolRecord(task,date);
     	}
-     	
-    	if(addTaskS.getText() != null && addTaskS.getText().length() > 0) //check if a task has been inputed
-    		{
-    			schoolTask.add(task);
-    			listViewS.setItems(schoolTask);//add task to listView
-    			addTaskS.clear(); //clear input for new task
-    		}   
-    	
-    	// insert the record into the database
-    	dbConnect connect = new dbConnect();
-    	connect.insertSchoolRecord(task,date);
+    	else
+    	{
+    		Alert dateError = new Alert(AlertType.ERROR);
+    		dateError.setContentText("Please Pick A Due Date.");
+    		dateError.show();
+    	}
 
     }  
 
@@ -321,7 +326,8 @@ public class TaskMController implements Initializable{
     	LocalDate date = datePickerW.getValue();
     	String task = addTaskW.getText();
 
-    	if(date != null) {
+    	if(date != null && addTaskW.getText() != null && addTaskW.getText().length() > 0) //check if a task has been inputed)
+    	{
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
         		task= task + ("\u2605") + ("\u2605") + ("\u2605");
@@ -334,17 +340,21 @@ public class TaskMController implements Initializable{
         		task= task + ("\u2605") + ("\u2605");
         	}
         	
+        	workTask.add(task);
+			ListViewW.setItems(workTask); //add task to listView
+			addTaskW.clear(); //clear input for new task
+			
+			// insert the record into the database
+	    	dbConnect connect = new dbConnect();
+	    	connect.insertWorkRecord(task,date);
+        	
     	}
-    	
-    	if(addTaskW.getText() != null && addTaskW.getText().length() > 0) //check if a task has been inputed
-    		{	
-    			workTask.add(task);
-    			ListViewW.setItems(workTask); //add task to listView
-    			addTaskW.clear(); //clear input for new task
-    		}
-    	// insert the record into the database
-    	dbConnect connect = new dbConnect();
-    	connect.insertWorkRecord(task,date);
+    	else
+    	{
+    		Alert dateError = new Alert(AlertType.ERROR);
+    		dateError.setContentText("Please Pick A Due Date.");
+    		dateError.show();
+    	}
 
     }
 
@@ -424,7 +434,8 @@ public class TaskMController implements Initializable{
     	LocalDate date = datePickerP.getValue();
     	String task = addTaskP.getText();
     	
-    	if(date != null) {
+    	if(date != null && addTaskP.getText() != null && addTaskP.getText().length() > 0) 
+    	{
     		task = task + ": due "+ (date.toString());
         	if(date.equals(getCurrentDate())) {
         		task= task + ("\u2605") + ("\u2605") + ("\u2605");
@@ -437,24 +448,27 @@ public class TaskMController implements Initializable{
         		task= task + ("\u2605") + ("\u2605");
         	}
         	
+        	personalTask.add(task);
+			ListViewP.setItems(personalTask); //add task to listView 
+			addTaskP.clear(); //clear input for new task
+			
+			// insert the record into the database
+	    	dbConnect connect = new dbConnect();
+	    	connect.insertPersonalRecord(task,date);       	
     	}
     	
-    	if(addTaskP.getText() != null && addTaskP.getText().length() > 0) //check if a task has been inputed
-    		{
-    			personalTask.add(task);
-    			ListViewP.setItems(personalTask); //add task to listView 
-    			addTaskP.clear(); //clear input for new task
-    			
-    		}
-    	// insert the record into the database
-    	dbConnect connect = new dbConnect();
-    	connect.insertPersonalRecord(task,date);
+    	else
+    	{
+    		Alert dateError = new Alert(AlertType.ERROR);
+    		dateError.setContentText("Please Pick A Due Date.");
+    		dateError.show();
+    	}
 
     }
 
     
     /**
-     * THis method allow in-line update of task name and date.
+     * This method allow in-line update of task name and date.
      * User select a task,press edit to enter edit mode and use keyboard to make a change. 
      * press enter to confirm finishing change, and click save button to save to database
      */
@@ -489,7 +503,6 @@ public class TaskMController implements Initializable{
 				e.printStackTrace();
 			}
         	ListViewP.setEditable(false);
-
 	  }
 	 	
     
@@ -552,7 +565,6 @@ public class TaskMController implements Initializable{
 
     	}
     	
-
     	try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SearchResults.fxml"));
             Parent root = (Parent) fxmlLoader.load();
